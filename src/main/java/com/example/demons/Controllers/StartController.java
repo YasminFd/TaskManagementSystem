@@ -1,22 +1,22 @@
 package com.example.demons.Controllers;
 import com.example.demons.Controllers.TaskController.NormalTaskController;
 import com.example.demons.Controllers.TaskController.PrioritisedTaskController;
-import com.example.demons.Controllers.TaskController.TaskController;
 import com.example.demons.Controllers.TaskController.TimedTaskController;
 import com.example.demons.DbConnection;
 import com.example.demons.Models.Task;
 import com.example.demons.enums.PriorityStatus;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
@@ -37,12 +37,16 @@ public class StartController implements Initializable {
     public ChoiceBox<String>  filter;
     @FXML
     public VBox Main;
+    @FXML
+    public ScrollPane scroll_pane;
     private ArrayList<Task<?>> Tasks;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
 
-
+            scroll_pane.setFocusTraversable(true);
+            Main.setFocusTraversable(false);
+            filter.setFocusTraversable(false);
             List<Node> nodesToRemove = new ArrayList<>();
             for (Node node : Main.getChildren()) {
                 if (node instanceof VBox) {
@@ -51,18 +55,18 @@ public class StartController implements Initializable {
             }
             Main.getChildren().removeAll(nodesToRemove);
 
-            filter.setValue("Recipe Name");
+            filter.setValue("All Tasks");
 
             try {
                 Tasks=getTasks();
-                for (Task R : Tasks)
+                for (Task<?> R : Tasks)
                     System.out.printf(R.toString());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            Insets margin = new Insets(30, 30, 15, 30);
+            Insets margin = new Insets(30, 30, 15, 300);
             try {
-                for (Task R : Tasks) {
+                for (Task<?> R : Tasks) {
 
                     if(R.getType()==0) {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/Normal Task.fxml"));
@@ -72,7 +76,7 @@ public class StartController implements Initializable {
                         controller.setTitle(R.getTitle());
                         controller.setStatus_color(R.getStatus());
                         controller.setStatus_text(R.getStatus());
-                        Main.setMargin(box, margin);
+                        VBox.setMargin(box, margin);
                         Main.getChildren().add(box);
                         FlowPane.setMargin(box, new Insets(10));
                     }else if(R.getType()==1){
@@ -84,7 +88,7 @@ public class StartController implements Initializable {
                         controller.setTitle(R.getTitle());
                         controller.setStatus_color(R.getStatus());
                         controller.setStatus_text(R.getStatus());
-                        Main.setMargin(box, margin);
+                        VBox.setMargin(box, margin);
                         Main.getChildren().add(box);
                         FlowPane.setMargin(box, new Insets(10));
                     }else{
@@ -96,7 +100,7 @@ public class StartController implements Initializable {
                         controller.setTitle(R.getTitle());
                         controller.setStatus_color(R.getStatus());
                         controller.setStatus_text(R.getStatus());
-                        Main.setMargin(box, margin);
+                        VBox.setMargin(box, margin);
                         Main.getChildren().add(box);
                         FlowPane.setMargin(box, new Insets(10));
                     }
@@ -114,7 +118,7 @@ public class StartController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/start.fxml"));
             Parent root = loader.load();
-            StartController controller = loader.getController();
+            //StartController controller = loader.getController();
             Scene scene = Logo.getScene();
             scene.setRoot(root);
         } catch (IOException e) {
@@ -123,9 +127,9 @@ public class StartController implements Initializable {
     }
     public void goToAddTask(MouseEvent mouseEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/AddTask.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/start.fxml"));
             Parent root = loader.load();
-            StartController controller = loader.getController();
+            //StartController controller = loader.getController();
             Scene scene = Logo.getScene();
             scene.setRoot(root);
         } catch (IOException e) {

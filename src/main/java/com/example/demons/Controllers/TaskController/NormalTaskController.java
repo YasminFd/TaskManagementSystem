@@ -7,15 +7,12 @@ import javafx.event.ActionEvent;
 import java.util.Optional;
 
 public class NormalTaskController extends TaskController{
-    //public Task<?> Task;
 
 
-    public void setTask() {
-        setTask(null);
-    }
 
-    public void setTask(Task<?> task) {
-        Task = task;
+    @Override
+    public void setTask(Task<?> Task){
+        Task=null;
     }
 
 

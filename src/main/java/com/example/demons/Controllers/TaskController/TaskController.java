@@ -2,6 +2,7 @@ package com.example.demons.Controllers.TaskController;
 
 import com.example.demons.Models.Task;
 import com.example.demons.enums.TaskStatus;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
@@ -33,18 +34,25 @@ public abstract class TaskController {
     }
 
     public void setStatus_text(TaskStatus status_text) {
-        this.status_text.setText(String.valueOf(status_text.getStatusText()));
+        Platform.runLater(() -> {
+        this.status_text.setText(String.valueOf(status_text.getStatusText()));});
     }
 
     public void setStatus_color(TaskStatus status) {
-        String style = "-fx-border-width: 20; -fx-border-style: solid; -fx-border-radius: 20px ;";
+        Platform.runLater(() -> {
+            String style = "-fx-border-width: 20; -fx-border-style: solid; -fx-border-radius: 20px ;";
 
-        if (status == TaskStatus.COMPLETED) {
-            style += "-fx-border-color: green;";
-        } else if (status == TaskStatus.IN_PROGRESS) {
-            style += "-fx-border-color: red;";
-        }
+            if (status == TaskStatus.COMPLETED) {
+                style += "-fx-border-color: green;";
+            } else if (status == TaskStatus.IN_PROGRESS) {
+                style += "-fx-border-color: red;";
+            }
 
-        this.status_color.setStyle(style);
+            this.status_color.setStyle(style);
+        });
+    }
+
+    public void setTask(Task<?> task) {
+        Task = task;
     }
 }
