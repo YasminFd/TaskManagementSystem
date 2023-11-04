@@ -41,7 +41,7 @@
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Pane fx:id="status_color" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="41.0" style="-fx-border-width: 20; -fx-border-radius: 10px; -fx-border-color: #00FF00;" />
-            <Label fx:id="status_text" prefHeight="20.0" prefWidth="67.0" text="ongoing">
+            <Label fx:id="status_text" prefHeight="20.0" prefWidth="109.0" text="ongoing">
                <HBox.margin>
                   <Insets left="20.0" top="10.0" />
                </HBox.margin>
@@ -51,7 +51,7 @@
             </Label>
             <Hyperlink fx:id="delete" onAction="#deleteTask" text="delete">
                <HBox.margin>
-                  <Insets left="250.0" right="10.0" top="10.0" />
+                  <Insets left="200.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Hyperlink>
             <Hyperlink fx:id="view" onAction="#viewTask" text="view">

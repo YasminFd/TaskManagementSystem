@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane prefHeight="1000.0" prefWidth="1000.0" style="-fx-background-color: #FAF0D7;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demons.Controllers.StartController"  fitToHeight="true" fitToWidth="true">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-Infinity" prefWidth="-Infinity" style="-fx-background-color: #FAF0D7;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demons.Controllers.StartController">
    <content>
       <HBox fillHeight="true" pickOnBounds="false" prefHeight="1000.0" prefWidth="1000.0" style="-fx-background-color: #FAF0D7;" HBox.hgrow="ALWAYS">
          <children>
-            <VBox HBox.hgrow="NEVER" alignment="TOP_CENTER"  prefWidth="102.0" style="-fx-background-color: #D5CBB3;" >
+            <VBox alignment="TOP_CENTER" prefWidth="102.0" style="-fx-background-color: #D5CBB3;" HBox.hgrow="NEVER">
                <children>
                   <ImageView fx:id="Logo" fitHeight="56.0" fitWidth="62.0" onMouseClicked="#goToHomePage" pickOnBounds="true" preserveRatio="true">
                      <VBox.margin>
@@ -36,7 +39,26 @@
                   </ImageView>
                </children>
             </VBox>
-            <VBox HBox.hgrow="ALWAYS" fx:id="Main" prefHeight="720.0"  />
+            <VBox fx:id="Main" prefHeight="720.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ChoiceBox fx:id="filter" prefWidth="100.0" style="-fx-background-color:   #FAF0D7; -fx-border-color:  #D5CBB3; -fx-border-radius: 2; -fx-border-width: 2;">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="ToDo Task" />
+                                 <String fx:value="Priorities" />
+                                 <String fx:value="Deadlines" />
+                              </FXCollections>
+                           </items>
+                        </ChoiceBox>
+                     </children>
+                     <padding>
+                        <Insets right="30.0" top="30.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </HBox>
    </content>

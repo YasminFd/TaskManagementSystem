@@ -12,7 +12,7 @@ public class Start extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Start.class.getResource("start.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), javafx.stage.Screen.getPrimary().getVisualBounds().getWidth(), javafx.stage.Screen.getPrimary().getVisualBounds().getHeight());
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
         stage.setTitle("TaDo");
         stage.setScene(scene);
         stage.show();
