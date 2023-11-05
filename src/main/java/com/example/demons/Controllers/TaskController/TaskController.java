@@ -1,5 +1,6 @@
 package com.example.demons.Controllers.TaskController;
 
+import com.example.demons.LambdaInterfaces.StatusLambdaServices;
 import com.example.demons.Models.Task;
 import com.example.demons.enums.TaskStatus;
 import javafx.application.Platform;
@@ -11,7 +12,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
-public abstract class TaskController {
+import java.util.Date;
+import java.util.function.Predicate;
+
+public abstract class TaskController  {
     @FXML
     public Label Title,status_text;
     @FXML
@@ -19,6 +23,8 @@ public abstract class TaskController {
     @FXML
     public Hyperlink delete,view;
     public Task<?> Task;
+
+
     @FXML
     public  void viewTask(ActionEvent actionEvent){
 
@@ -40,19 +46,18 @@ public abstract class TaskController {
 
     public void setStatus_color(TaskStatus status) {
         Platform.runLater(() -> {
-            String style = "-fx-border-width: 20; -fx-border-style: solid; -fx-border-radius: 20px ;";
-
             if (status == TaskStatus.COMPLETED) {
-                style += "-fx-border-color: green;";
+                StatusLambdaServices.setCompleted.setStatus(status_color);
             } else if (status == TaskStatus.IN_PROGRESS) {
-                style += "-fx-border-color: red;";
+                StatusLambdaServices.setInProgress.setStatus(status_color);
+            }else if((status == TaskStatus.OVERDUE)){
+                StatusLambdaServices.setOverDue.setStatus(status_color);
             }
-
-            this.status_color.setStyle(style);
         });
     }
 
     public void setTask(Task<?> task) {
         Task = task;
     }
+
 }

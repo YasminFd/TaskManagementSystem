@@ -2,7 +2,8 @@ package com.example.demons.enums;
 
 public enum TaskStatus {
     IN_PROGRESS("In Progress"),
-    COMPLETED("Completed");
+    COMPLETED("Completed"),
+    OVERDUE("Overdue");
 
     private final String statusText;
 

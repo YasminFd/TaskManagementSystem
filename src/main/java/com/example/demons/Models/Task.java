@@ -5,7 +5,7 @@ import com.example.demons.enums.TaskStatus;
 import java.util.Date;
 import java.util.Optional;
 
-public class Task <T> implements Comparable<Task>{
+public class Task <T extends Object> implements Comparable<Task>{
     private int ID;
     private String Title;
     private String Description;

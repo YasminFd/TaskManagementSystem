@@ -1,16 +1,18 @@
 package com.example.demons.Controllers.TaskController;
 
+import com.example.demons.LambdaInterfaces.StatusLambdaServices;
 import com.example.demons.Models.Task;
 import com.example.demons.enums.PriorityStatus;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 
 public class PrioritisedTaskController extends TaskController{
     @FXML
     public Label priority;
-    //public Task<PriorityStatus> Task;
+
 
     public void setPriority(PriorityStatus priorityTask) {
         Platform.runLater(() -> {
@@ -20,11 +22,11 @@ public class PrioritisedTaskController extends TaskController{
 
                 if (priorityTask == PriorityStatus.LOW) {
                     // Assuming "priority" is a Label, set its text and style
-                    priority.setText("Low");
-                    priority.setStyle("-fx-text-fill: green; -fx-font-weight: bold;"); // Set the text color to yellow
-                } else if (priorityTask == PriorityStatus.MEDIUM) {
-                    priority.setText("Low");
-                    priority.setStyle("-fx-text-fill: yellow; -fx-font-weight: bold;");
+                    StatusLambdaServices.setLOW.setStatus(priority);
+                    } else if (priorityTask == PriorityStatus.MEDIUM) {
+                    StatusLambdaServices.setMEDIUM.setStatus(priority);
+                    } else if(priorityTask == PriorityStatus.HIGH){
+                    StatusLambdaServices.setHIGH.setStatus(priority);
                 }
             } else {
                 // Handle the case where the PriorityTask is null (if needed)

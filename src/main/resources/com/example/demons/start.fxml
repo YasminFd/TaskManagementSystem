@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -49,12 +50,17 @@
                                  <items>
                                     <FXCollections fx:factory="observableArrayList">
                                        <String fx:value="All Tasks" />
-                                       <String fx:value="ToDo Task" />
+                                       <String fx:value="ToDo Tasks" />
                                        <String fx:value="Priorities" />
                                        <String fx:value="Deadlines" />
                                     </FXCollections>
                                  </items>
                               </ChoiceBox>
+                              <Button mnemonicParsing="false" onAction="#filter" style="-fx-background-color: #FAF0D7; -fx-border-color: #D5CBB3; -fx-font-size: 20px; -fx-border-width: 2; -fx-border-radius: 2;" text="filter">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
                            </children>
                            <padding>
                               <Insets right="30.0" top="30.0" />
