@@ -5,6 +5,7 @@ module com.example.demons {
     requires org.controlsfx.controls;
 
 
+
     opens com.example.demons to javafx.fxml;
     opens com.example.demons.Controllers;
     exports com.example.demons;
