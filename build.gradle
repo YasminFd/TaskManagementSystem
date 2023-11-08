@@ -40,6 +40,10 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.33' // Use the correct version
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    // https://mvnrepository.com/artifact/org.controlsfx/controlsfx
+    implementation 'org.controlsfx:controlsfx:11.1.2'
+
+
 }
 
 test {
