@@ -5,9 +5,8 @@ import com.example.demons.enums.PriorityStatus;
 import com.example.demons.enums.TaskStatus;
 
 import java.sql.*;
-import java.util.Date;
 import java.util.ArrayList;
-import java.util.Optional;
+import java.util.Date;
 import java.util.function.Predicate;
 
 public class DbConnection {
@@ -157,6 +156,68 @@ public class DbConnection {
             stmt.setString(2, T.getStatusText());
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+
+    }
+
+    public int addTask(Task task) throws SQLException {
+        String insertQuery;
+
+        int type = task.getType();
+        String title = task.getTitle();
+        String description = task.getDescription();
+        TaskStatus status = task.getStatus();
+        Date created_at = task.getCreated_at();
+        PriorityStatus priority = null;
+        Date deadline = null;
+
+        // Depending on the task type, prepare the INSERT query
+        if (type == 0) {
+            insertQuery = "INSERT INTO task (type, name, description, status, created_at) VALUES (?, ?, ?, ?, ?)";
+        } else if (type == 1) {
+            priority = (PriorityStatus) task.getProperty();
+            insertQuery = "INSERT INTO task (type, name, description, status, priority, created_at) VALUES (?, ?, ?, ?, ?, ?)";
+        } else if (type == 2) {
+            deadline = (Date)task.getProperty();
+            insertQuery = "INSERT INTO task (type, name, description, status, deadline, created_at) VALUES (?, ?, ?, ?, ?, ?)";
+        } else {
+            // Handle unsupported task type
+            throw new IllegalArgumentException("Unsupported task type");
+        }
+
+        try (PreparedStatement stmt = dbconn.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setInt(1, type);
+            stmt.setString(2, title);
+            stmt.setString(3, description);
+            stmt.setString(4, status.name());
+            if (type == 1) {
+                stmt.setString(5, priority.name());
+                stmt.setDate(6, new java.sql.Date(created_at.getTime()));
+            } else if (type == 2) {
+                stmt.setDate(5, new java.sql.Date(deadline.getTime()));
+                stmt.setDate(6, new java.sql.Date(created_at.getTime()));
+            } else {
+                stmt.setDate(5, new java.sql.Date(created_at.getTime()));
+            }
+
+            // Execute the INSERT query
+            int affectedRows = stmt.executeUpdate();
+
+            if (affectedRows > 0) {
+                // Retrieve the generated ID
+                try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        int generatedId = generatedKeys.getInt(1);
+                        System.out.println("Generated ID: " + generatedId);
+                        return generatedId;
+                        // You can now use the generatedId as needed
+                    } else {
+                        throw new SQLException("Failed to retrieve generated ID");
+                    }
+                }
+            } else {
+                throw new SQLException("Failed to insert task, no rows affected");
+            }
         }
 
     }

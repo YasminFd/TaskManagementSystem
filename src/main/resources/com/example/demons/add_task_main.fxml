@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="766.0" style="-fx-background-color: FCE09B;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demons.Controllers.AddTaskController">
+<AnchorPane fx:id="box" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="766.0" style="-fx-background-color: #FAF0D7;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demons.Controllers.AddTaskController.AddTaskController">
    <children>
       <Text fill="#081a16" layoutX="44.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Task Title" wrappingWidth="286.0517578125">
          <font>

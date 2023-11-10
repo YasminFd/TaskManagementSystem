@@ -12,4 +12,6 @@ public class DeadlineTaskComparator implements Comparator<Task> {
         Date b=(Date)o2.getProperty();
         return a.compareTo(b);
     }
+    //customised comparision based on the deadline of Task
+    // -> for sorting Tasks of type Deadline
 }

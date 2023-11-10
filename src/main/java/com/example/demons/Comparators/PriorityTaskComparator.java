@@ -1,11 +1,6 @@
 package com.example.demons.Comparators;
 
 import com.example.demons.Models.Task;
-import com.example.demons.enums.TaskStatus;
-
-import java.util.Comparator;
-
-import com.example.demons.Models.Task;
 import com.example.demons.enums.PriorityStatus;
 
 import java.util.Comparator;
@@ -33,5 +28,8 @@ public class PriorityTaskComparator implements Comparator<Task> {
         } else {
             return o1.compareTo(o2); // Both tasks have the same priority, check created_date
         }
+        //customised comparision based on the priority of Task
+        // -> for sorting Tasks of priority type only
+        // Low < Medium < High
     }
 }

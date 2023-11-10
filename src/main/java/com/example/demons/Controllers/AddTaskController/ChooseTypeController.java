@@ -1,4 +1,4 @@
-package com.example.demons.Controllers;
+package com.example.demons.Controllers.AddTaskController;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

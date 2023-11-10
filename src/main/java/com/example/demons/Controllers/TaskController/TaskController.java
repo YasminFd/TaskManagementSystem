@@ -8,12 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-
-import java.util.Date;
-import java.util.function.Predicate;
+import javafx.scene.layout.Pane;
 
 public abstract class TaskController  {
     @FXML
@@ -41,11 +36,13 @@ public abstract class TaskController  {
 
     public void setStatus_text(TaskStatus status_text) {
         Platform.runLater(() -> {
+            //dsiplay status text based on on tsk status enum
         this.status_text.setText(String.valueOf(status_text.getStatusText()));});
     }
 
     public void setStatus_color(TaskStatus status) {
         Platform.runLater(() -> {
+            //change display of status based on tasks enum status
             if (status == TaskStatus.COMPLETED) {
                 StatusLambdaServices.setCompleted.setStatus(status_color);
             } else if (status == TaskStatus.IN_PROGRESS) {

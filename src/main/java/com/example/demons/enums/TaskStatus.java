@@ -1,6 +1,7 @@
 package com.example.demons.enums;
 
 public enum TaskStatus {
+    //enum to define constant status of Tasks
     IN_PROGRESS("In Progress"),
     COMPLETED("Completed"),
     OVERDUE("Overdue");

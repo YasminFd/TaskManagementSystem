@@ -3,15 +3,17 @@ package com.example.demons.Models;
 import com.example.demons.enums.TaskStatus;
 
 import java.util.Date;
-import java.util.Optional;
 
-public class Task <T extends Object> implements Comparable<Task>{
+public class Task <T extends Object> implements Comparable<Task>{//to customise compare To
+    //Generis Class
     private int ID;
     private String Title;
     private String Description;
     private TaskStatus status;
     private int type;
-    private T Property;
+    private T Property;// generic property depending of task type needed
+    // defined as a Date for tasks with Deadlines, PriorityStatus for prioritised tasks
+    //null for normal To Do Tasks
     private Date created_at;
 
 
@@ -81,6 +83,7 @@ public class Task <T extends Object> implements Comparable<Task>{
         this.created_at = created_at;
     }
 
+    //compare tasks by creation date
     @Override
     public int compareTo(Task o) {
         return this.getCreated_at().compareTo(o.getCreated_at());
