@@ -148,8 +148,8 @@ public class StartController implements Initializable {
 
 
                     try {
-                        TaskFXMLFactory taskFactory = new TaskFXMLFactory();//encapsulate the logic for creating task views of specific types
-                        VBox taskView = taskFactory.Load_View(R.getType()).createTaskFXML(R);
+                        TaskFXMLFactory taskFactory = new TaskFXMLFactory();//factory to load task views based on type
+                        VBox taskView = taskFactory.Load_View(R);//resulting loaded task
                         VBox.setMargin(taskView, margin);
                         Main.getChildren().add(taskView);
                         FlowPane.setMargin(taskView, new Insets(10));

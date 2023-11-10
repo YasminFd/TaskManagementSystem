@@ -45,6 +45,7 @@ public class ChoosePriorityController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
+            //lambda expression for event listener on button click
             add_priority.setOnAction(event -> {
                 String chosenButton = getChosenButton();
                 PriorityStatus p = PriorityStatus.fromString(chosenButton);

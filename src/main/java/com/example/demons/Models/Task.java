@@ -1,11 +1,14 @@
 package com.example.demons.Models;
 
+import com.example.demons.AddTaskProxy.DeadlineTaskCreator;
+import com.example.demons.DbConnection;
 import com.example.demons.enums.TaskStatus;
 import com.example.demons.enums.TaskType;
 
+import java.sql.SQLException;
 import java.util.Date;
 
-public class Task <T extends Object> implements Comparable<Task>{//to customise compare To
+public class Task <T extends Object> implements Comparable<Task>, DeadlineTaskCreator {//to customise compare To
     //Generis Class
     private int ID;
     private String Title;
@@ -101,5 +104,12 @@ public class Task <T extends Object> implements Comparable<Task>{//to customise 
                 ", Property=" + Property +
                 ", created_at=" + created_at +
                 '}'+'\n';
+    }
+
+    @Override
+    public int AddTask(String title, String description, Date deadline) throws SQLException {
+        DbConnection dbConnection= DbConnection.getInstance();
+        dbConnection.addTask(new Task(-1, TaskType.DEADLINE,title,description, TaskStatus.IN_PROGRESS,deadline,new java.util.Date()));
+        return -1;
     }
 }

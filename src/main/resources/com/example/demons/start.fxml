@@ -19,10 +19,13 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefWidth="102.0" style="-fx-background-color: #D5CBB3;" HBox.hgrow="NEVER">
                      <children>
-                        <ImageView fx:id="Logo" fitHeight="56.0" fitWidth="62.0" onMouseClicked="#goToHomePage" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="Logo" fitHeight="113.0" fitWidth="127.0" onMouseClicked="#goToHomePage" pickOnBounds="true" preserveRatio="true">
                            <VBox.margin>
                               <Insets bottom="30.0" top="10.0" />
                            </VBox.margin>
+                           <image>
+                              <Image url="@images/Logo.png" />
+                           </image>
                         </ImageView>
                         <ImageView fx:id="allTasks" fitHeight="56.0" fitWidth="62.0" onMouseClicked="#goToHomePage" pickOnBounds="true" preserveRatio="true">
                            <image>

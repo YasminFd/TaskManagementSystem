@@ -222,4 +222,21 @@ public class DbConnection {
         }
 
     }
+    public void deleteTask(int taskId) throws SQLException {
+        String deleteQuery = "DELETE FROM task WHERE id = ?";
+
+        try (PreparedStatement stmt = dbconn.prepareStatement(deleteQuery)) {
+            stmt.setInt(1, taskId);
+
+            // Execute the DELETE query
+            int affectedRows = stmt.executeUpdate();
+
+            if (affectedRows == 0) {
+                System.out.println("No task with ID " + taskId + " found.");
+                // You might want to throw an exception or handle this case differently
+            } else {
+                System.out.println("Task with ID " + taskId + " deleted successfully.");
+            }
+        }
+    }
 }

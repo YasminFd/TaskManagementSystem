@@ -1,9 +1,7 @@
 package com.example.demons.Controllers.AddTaskController;
 
+import com.example.demons.AddTaskProxy.TaskProxy;
 import com.example.demons.DbConnection;
-import com.example.demons.Models.Task;
-import com.example.demons.enums.TaskStatus;
-import com.example.demons.enums.TaskType;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,9 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 
 import java.net.URL;
-import java.sql.SQLException;
-import java.time.LocalDate;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ChooseDeadlineController implements Initializable {
@@ -35,19 +32,20 @@ public class ChooseDeadlineController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
+            //lambda expression for event listener on button click
             add_deadline.setOnAction(event -> {
                 LocalDate selectedDate = deadline.getValue();
                 if (selectedDate != null) {
                     System.out.println("Selected Date: " + selectedDate);
                     Date d = Date.valueOf(selectedDate);
                     // You can do something with the selected date here
-                    Task<Date> t = new Task<>(-1, TaskType.DEADLINE,title,description, TaskStatus.IN_PROGRESS,d,new java.util.Date());
+                    TaskProxy proxy= new TaskProxy();
                     try {
-                       int id = dbConnection.addTask(t);
-                       //Load View For Task with id
-                    } catch (SQLException e) {
+                        proxy.AddTask(title,description,d);
+                    } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
+
                 } else {
                     System.out.println("No date selected");
                 }
