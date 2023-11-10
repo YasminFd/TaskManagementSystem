@@ -3,6 +3,7 @@ package com.example.demons;
 import com.example.demons.Models.Task;
 import com.example.demons.enums.PriorityStatus;
 import com.example.demons.enums.TaskStatus;
+import com.example.demons.enums.TaskType;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class DbConnection {
 
     private DbConnection() {
 
-        String dbName = "taskmanager";
+        String dbName = "taskmanagerapp";
         String dbUser = "root";
         String dbPass = "";
         String url = "jdbc:mysql://127.0.0.1/" + dbName;
@@ -45,25 +46,25 @@ public class DbConnection {
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
-            int type = rs.getInt("type");
+            TaskType type = TaskType.valueOf(rs.getString("type"));
             int id = rs.getInt("id");
             String title = rs.getString("name");
             String description = rs.getString("description");
             TaskStatus status = TaskStatus.valueOf(rs.getString("status"));
             Date created_at = rs.getDate("created_at");
-            if (type == 0) {
-                tasks.add(new Task<>(id, type, title, description, status, null, created_at));
-            } else if (type == 1) {
+            if (type == TaskType.ToDo) {
+                tasks.add(new Task<>(id, TaskType.ToDo, title, description, status, null, created_at));
+            } else if (type == TaskType.PRIORITISED) {
                 PriorityStatus priority = PriorityStatus.valueOf(rs.getString("priority"));
-                tasks.add(new Task<>(id, type, title, description, status, priority, created_at));
-            } else if (type == 2) {
+                tasks.add(new Task<>(id, TaskType.PRIORITISED, title, description, status, priority, created_at));
+            } else if (type == TaskType.DEADLINE) {
                 Date deadline = rs.getDate("deadline");
                 if(dateHasPassed.test(deadline) && status!=TaskStatus.COMPLETED && status!=TaskStatus.OVERDUE)
                 {
                     status=TaskStatus.OVERDUE;
                     editTaskStatus(id,TaskStatus.OVERDUE);
                 }
-                tasks.add(new Task<>(id, type, title, description, status, deadline, created_at));
+                tasks.add(new Task<>(id, TaskType.DEADLINE, title, description, status, deadline, created_at));
             }
         }
 
@@ -76,12 +77,12 @@ public class DbConnection {
 
         PreparedStatement stmt = dbconn.prepareStatement("SELECT * FROM task WHERE type=?");
 
-            stmt.setInt(1,0 );
+            stmt.setString(1,"ToDo" );
 
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
-            int type = rs.getInt("type");
+            TaskType type = TaskType.valueOf(rs.getString("type"));
             int id = rs.getInt("id");
             String title = rs.getString("name");
             String description = rs.getString("description");
@@ -100,12 +101,12 @@ public class DbConnection {
 
         PreparedStatement stmt = dbconn.prepareStatement("SELECT * FROM task WHERE type=?");
 
-        stmt.setInt(1,1 );
+        stmt.setString(1,"PRIORITISED" );
 
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
-            int type = rs.getInt("type");
+            TaskType type = TaskType.valueOf(rs.getString("type"));
             int id = rs.getInt("id");
             String title = rs.getString("name");
             String description = rs.getString("description");
@@ -125,12 +126,12 @@ public class DbConnection {
 
         PreparedStatement stmt = dbconn.prepareStatement("SELECT * FROM task WHERE type=?");
 
-        stmt.setInt(1,2 );
+        stmt.setString(1,"DEADLINE" );
 
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
-            int type = rs.getInt("type");
+            TaskType type = TaskType.valueOf(rs.getString("type"));
             int id = rs.getInt("id");
             String title = rs.getString("name");
             String description = rs.getString("description");
@@ -163,7 +164,7 @@ public class DbConnection {
     public int addTask(Task task) throws SQLException {
         String insertQuery;
 
-        int type = task.getType();
+        TaskType type = task.getType();
         String title = task.getTitle();
         String description = task.getDescription();
         TaskStatus status = task.getStatus();
@@ -172,12 +173,12 @@ public class DbConnection {
         Date deadline = null;
 
         // Depending on the task type, prepare the INSERT query
-        if (type == 0) {
+        if (type == TaskType.ToDo) {
             insertQuery = "INSERT INTO task (type, name, description, status, created_at) VALUES (?, ?, ?, ?, ?)";
-        } else if (type == 1) {
+        } else if (type == TaskType.PRIORITISED) {
             priority = (PriorityStatus) task.getProperty();
             insertQuery = "INSERT INTO task (type, name, description, status, priority, created_at) VALUES (?, ?, ?, ?, ?, ?)";
-        } else if (type == 2) {
+        } else if (type == TaskType.DEADLINE) {
             deadline = (Date)task.getProperty();
             insertQuery = "INSERT INTO task (type, name, description, status, deadline, created_at) VALUES (?, ?, ?, ?, ?, ?)";
         } else {
@@ -186,18 +187,18 @@ public class DbConnection {
         }
 
         try (PreparedStatement stmt = dbconn.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setInt(1, type);
+            stmt.setString(1, type.name());
             stmt.setString(2, title);
             stmt.setString(3, description);
             stmt.setString(4, status.name());
-            if (type == 1) {
-                stmt.setString(5, priority.name());
-                stmt.setDate(6, new java.sql.Date(created_at.getTime()));
-            } else if (type == 2) {
-                stmt.setDate(5, new java.sql.Date(deadline.getTime()));
+            if (type == TaskType.ToDo) {
+                stmt.setDate(5, new java.sql.Date(created_at.getTime()));
+            } else if (type == TaskType.PRIORITISED) {
+                stmt.setString(5,priority.name());
                 stmt.setDate(6, new java.sql.Date(created_at.getTime()));
             } else {
-                stmt.setDate(5, new java.sql.Date(created_at.getTime()));
+                stmt.setDate(6, new java.sql.Date(created_at.getTime()));
+                stmt.setDate(5, (java.sql.Date) deadline);
             }
 
             // Execute the INSERT query

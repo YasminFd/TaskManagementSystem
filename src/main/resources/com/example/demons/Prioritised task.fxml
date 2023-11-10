@@ -21,15 +21,15 @@
                   <Font name="Comic Sans MS" size="28.0" />
                </font>
             </Label>
-            <Label prefHeight="27.0" prefWidth="63.0" style="-fx-font-style: italic;" text="Priority:" textFill="#806a6a">
+            <Label prefHeight="27.0" prefWidth="72.0" style="-fx-font-style: italic;" text="Priority:" textFill="#806a6a">
                <font>
                   <Font size="18.0" />
                </font>
                <HBox.margin>
-                  <Insets left="180.0" top="10.0" />
+                  <Insets left="150.0" top="10.0" />
                </HBox.margin>
             </Label>
-            <Label fx:id="priority" alignment="TOP_CENTER" prefHeight="30.0" prefWidth="67.0" style="-fx-font-weight: bold;" text="HIGH" textFill="#dd1111">
+            <Label fx:id="priority" alignment="TOP_CENTER" prefHeight="30.0" prefWidth="111.0" style="-fx-font-weight: bold;" text="MEDIUM" textFill="#dd1111">
                <font>
                   <Font size="20.0" />
                </font>
@@ -45,7 +45,7 @@
             </Label>
          </children>
       </HBox>
-      <Separator maxWidth="-Infinity" minWidth="-Infinity" prefHeight="5.0" prefWidth="335.0" style="-fx-background-color: #EF9595;" />
+      <Separator maxWidth="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="364.0" style="-fx-background-color: #EF9595;" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Pane fx:id="status_color" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="41.0" style="-fx-border-width: 20; -fx-border-radius: 10px; -fx-border-color: #00FF00;" />

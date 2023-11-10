@@ -1,6 +1,7 @@
 package com.example.demons.Models;
 
 import com.example.demons.enums.TaskStatus;
+import com.example.demons.enums.TaskType;
 
 import java.util.Date;
 
@@ -10,14 +11,14 @@ public class Task <T extends Object> implements Comparable<Task>{//to customise 
     private String Title;
     private String Description;
     private TaskStatus status;
-    private int type;
-    private T Property;// generic property depending of task type needed
+    private TaskType type;
+    private T Property;// generic property depending on task type needed
     // defined as a Date for tasks with Deadlines, PriorityStatus for prioritised tasks
     //null for normal To Do Tasks
     private Date created_at;
 
 
-    public Task(int ID,int type, String title, String description, TaskStatus status, T property, Date created_at) {
+    public Task(int ID,TaskType type, String title, String description, TaskStatus status, T property, Date created_at) {
         this.ID = ID;
         this.type=type;
         Title = title;
@@ -31,7 +32,7 @@ public class Task <T extends Object> implements Comparable<Task>{//to customise 
         return Title;
     }
 
-    public int getType() {
+    public TaskType getType() {
         return type;
     }
 
@@ -55,7 +56,7 @@ public class Task <T extends Object> implements Comparable<Task>{//to customise 
         return created_at;
     }
 
-    public void setType(int type) {
+    public void setType(TaskType type) {
         this.type = type;
     }
 

@@ -2,9 +2,6 @@ package com.example.demons.Controllers;
 
 import com.example.demons.Comparators.AllTasksComparator;
 import com.example.demons.Controllers.AddTaskController.AddTaskController;
-import com.example.demons.Controllers.TaskController.NormalTaskController;
-import com.example.demons.Controllers.TaskController.PrioritisedTaskController;
-import com.example.demons.Controllers.TaskController.TimedTaskController;
 import com.example.demons.FilterStrategy.FilterDeadline;
 import com.example.demons.FilterStrategy.FilterPriorities;
 import com.example.demons.FilterStrategy.FilterTasks;
@@ -12,7 +9,7 @@ import com.example.demons.FilterStrategy.FilterToDo;
 import com.example.demons.LambdaInterfaces.TaskLambdaServices;
 import com.example.demons.Models.Task;
 import com.example.demons.SortStrategy.*;
-import com.example.demons.enums.PriorityStatus;
+import com.example.demons.TaskFXMLFactory.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,7 +30,10 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.ResourceBundle;
 //Controller for Home Page, Starter page of the whole application
 public class StartController implements Initializable {
     @FXML
@@ -145,45 +145,17 @@ public class StartController implements Initializable {
             Insets margin = new Insets(30, 30, 15, 300);
             try {
                 for (Task<?> R : Tasks) {
-                    //is task is of normal type load the corresponding view for it
-                    if(R.getType()==0) {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/Normal Task.fxml"));
-                        VBox box = loader.load();
-                        NormalTaskController controller = loader.getController();
-                        controller.setTask(R);
-                        controller.setTitle(R.getTitle());// display task title
-                        controller.setStatus_color(R.getStatus());// display status
-                        controller.setStatus_text(R.getStatus());
-                        VBox.setMargin(box, margin);
-                        Main.getChildren().add(box);
-                        FlowPane.setMargin(box, new Insets(10));
-                    }else if(R.getType()==1){
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/Prioritised task.fxml"));
-                        VBox box = loader.load();
-                        PrioritisedTaskController controller = loader.getController();
-                        controller.setTask(R);
-                        controller.setPriority((PriorityStatus)R.getProperty());
-                        controller.setTitle(R.getTitle());
-                        controller.setStatus_color(R.getStatus());
-                        controller.setStatus_text(R.getStatus());
-                        VBox.setMargin(box, margin);
-                        Main.getChildren().add(box);
-                        FlowPane.setMargin(box, new Insets(10));
-                    }else{
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/Timed Task.fxml"));
-                        VBox box = loader.load();
-                        TimedTaskController controller = loader.getController();
-                        controller.setTask(R);
-                        controller.setDeadline((Date)R.getProperty());
-                        controller.setTitle(R.getTitle());
-                        controller.setStatus_color(R.getStatus());
-                        controller.setStatus_text(R.getStatus());
-                        VBox.setMargin(box, margin);
-                        Main.getChildren().add(box);
-                        FlowPane.setMargin(box, new Insets(10));
+
+
+                    try {
+                        TaskFXMLFactory taskFactory = new TaskFXMLFactory();//encapsulate the logic for creating task views of specific types
+                        VBox taskView = taskFactory.Load_View(R.getType()).createTaskFXML(R);
+                        VBox.setMargin(taskView, margin);
+                        Main.getChildren().add(taskView);
+                        FlowPane.setMargin(taskView, new Insets(10));
+                    } catch (IOException e) {
+                        e.printStackTrace(); // Handle the exception appropriately
                     }
-
-
                 }
             } catch (Exception e) {
                 e.printStackTrace();

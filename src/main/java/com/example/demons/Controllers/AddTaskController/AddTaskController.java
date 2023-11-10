@@ -3,6 +3,7 @@ package com.example.demons.Controllers.AddTaskController;
 import com.example.demons.DbConnection;
 import com.example.demons.Models.Task;
 import com.example.demons.enums.TaskStatus;
+import com.example.demons.enums.TaskType;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -99,7 +100,7 @@ public class AddTaskController implements Initializable {
                             throw new RuntimeException(e);
                         }
                     }if(type.equals("ToDo")){
-                    Task<Date> t = new Task<>(-1,0,title,description, TaskStatus.IN_PROGRESS,null,new java.util.Date());
+                    Task<Date> t = new Task<>(-1, TaskType.ToDo,title,description, TaskStatus.IN_PROGRESS,null,new java.util.Date());
                     try {
                         dbConnection.addTask(t);
                     } catch (SQLException e) {

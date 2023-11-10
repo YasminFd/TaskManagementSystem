@@ -4,6 +4,7 @@ import com.example.demons.DbConnection;
 import com.example.demons.Models.Task;
 import com.example.demons.enums.PriorityStatus;
 import com.example.demons.enums.TaskStatus;
+import com.example.demons.enums.TaskType;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -47,7 +48,7 @@ public class ChoosePriorityController implements Initializable {
             add_priority.setOnAction(event -> {
                 String chosenButton = getChosenButton();
                 PriorityStatus p = PriorityStatus.fromString(chosenButton);
-                Task<PriorityStatus> t = new Task<>(-1,1,title,description, TaskStatus.IN_PROGRESS,p,new Date());
+                Task<PriorityStatus> t = new Task<>(-1, TaskType.PRIORITISED,title,description, TaskStatus.IN_PROGRESS,p,new Date());
                 try {
                     int id = dbConnection.addTask(t);
                     //Load View For Task with id
