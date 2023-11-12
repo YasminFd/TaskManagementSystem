@@ -52,6 +52,9 @@ public class StartController implements Initializable {
         //sort ALl TAsks by Creation Date
         Collections.sort(Tasks,new AllTasksComparator());
         //Display The tasks
+        scroll_pane.setFocusTraversable(true);
+        Main.setFocusTraversable(false);
+        filter.setFocusTraversable(false);
         Load_Screen();
     }
 
@@ -127,9 +130,7 @@ public class StartController implements Initializable {
     }
     private void Load_Screen(){
         Platform.runLater(() -> {
-            scroll_pane.setFocusTraversable(true);
-            Main.setFocusTraversable(false);
-            filter.setFocusTraversable(false);
+
             //if there is any nodes remove to replace with new
             List<Node> nodesToRemove = new ArrayList<>();
             for (Node node : Main.getChildren()) {
@@ -145,12 +146,11 @@ public class StartController implements Initializable {
             Insets margin = new Insets(30, 30, 15, 300);
             try {
                 for (Task<?> R : Tasks) {
-
-
                     try {
                         TaskFXMLFactory taskFactory = new TaskFXMLFactory();//factory to load task views based on type
                         VBox taskView = taskFactory.Load_View(R);//resulting loaded task
                         VBox.setMargin(taskView, margin);
+                        taskView.setFocusTraversable(false);
                         Main.getChildren().add(taskView);
                         FlowPane.setMargin(taskView, new Insets(10));
                     } catch (IOException e) {

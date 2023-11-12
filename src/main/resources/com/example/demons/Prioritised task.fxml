@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="121.0" prefWidth="500.0" spacing="5.0" style="-fx-background-color: #FAF0D7; -fx-border-radius: 20px; -fx-border-color: #EF9595; -fx-border-width: 5; -fx-padding: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demons.Controllers.TaskController.PrioritisedTaskController">
+<VBox fx:id="border" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="121.0" prefWidth="500.0" spacing="5.0" style="-fx-background-color: #FAF0D7; -fx-border-radius: 20px; -fx-border-color: #EF9595; -fx-border-width: 5; -fx-padding: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demons.Controllers.TaskController.PrioritisedTaskController">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
