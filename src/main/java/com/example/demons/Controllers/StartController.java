@@ -1,15 +1,10 @@
 package com.example.demons.Controllers;
 
-import com.example.demons.Comparators.AllTasksComparator;
 import com.example.demons.Controllers.AddTaskController.AddTaskController;
-import com.example.demons.FilterStrategy.FilterDeadline;
-import com.example.demons.FilterStrategy.FilterPriorities;
-import com.example.demons.FilterStrategy.FilterTasks;
-import com.example.demons.FilterStrategy.FilterToDo;
-import com.example.demons.LambdaInterfaces.TaskLambdaServices;
+import com.example.demons.FilterStrategy.*;
 import com.example.demons.Models.Task;
-import com.example.demons.SortStrategy.*;
-import com.example.demons.TaskFXMLFactory.*;
+import com.example.demons.SortStrategy.SortTasks;
+import com.example.demons.TaskFXMLFactory.TaskFXMLFactory;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,7 +26,6 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 //Controller for Home Page, Starter page of the whole application
@@ -48,9 +42,8 @@ public class StartController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {//called as the fxml is loaded
         //get All tasks from DB by calling defined Lambda expression
-        Tasks = TaskLambdaServices.getAll.getAllTasks();
-        //sort ALl TAsks by Creation Date
-        Collections.sort(Tasks,new AllTasksComparator());
+        FilterTasks f= new FilterAll();
+        Tasks=f.filter();
         //Display The tasks
         scroll_pane.setFocusTraversable(true);
         Main.setFocusTraversable(false);
@@ -106,24 +99,19 @@ public class StartController implements Initializable {
         //based on option ->get result
         if(selectedOption.equals("All Tasks")){
             //get type of tasks needed and sort respectively to each type
-            Tasks=TaskLambdaServices.getAll.getAllTasks();
-            s = new SortAllTasks();//choose strategy to use
-            s.sort(Tasks);//apply sort
+            f= new FilterAll();
+            Tasks=f.filter();
+
         }else if(selectedOption.equals("ToDo Tasks")){
             f= new FilterToDo();//choose filter to use
-            s = new SortToDo();//choose strategy to use
+            //choose strategy to use
             Tasks=f.filter();//apply filter
-            s.sort(Tasks);//apply sort
         }else if(selectedOption.equals("Priorities")){
             f= new FilterPriorities();//choose filter to use
-            s= new SortPriorities();//choose strategy to use
             Tasks=f.filter();//apply filter
-            s.sort(Tasks);//apply sort
         } else if (selectedOption.equals("Deadlines")) {
             f= new FilterDeadline();//choose filter to use
-            s= new SortDeadline();//choose strategy to use
             Tasks=f.filter();//apply filter
-            s.sort(Tasks);//apply sort
         }
         System.out.println("Selected Option: " + selectedOption);
         Load_Screen();
