@@ -1,5 +1,6 @@
 package com.example.demons.Controllers.AddTaskController;
 
+import com.example.demons.Controllers.TaskController.ViewTaskController;
 import com.example.demons.DbConnection;
 import com.example.demons.Models.Task;
 import com.example.demons.enums.TaskStatus;
@@ -9,18 +10,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddTaskController implements Initializable {
@@ -100,10 +104,31 @@ public class AddTaskController implements Initializable {
                             throw new RuntimeException(e);
                         }
                     }if(type.equals("ToDo")){
-                    Task<Date> t = new Task<>(-1, TaskType.ToDo,title,description, TaskStatus.IN_PROGRESS,null,new java.util.Date());
+                    Task t = new Task<>(-1, TaskType.ToDo,title,description, TaskStatus.IN_PROGRESS,null,new java.util.Date());
+                    //switch the Vbox with id main with all tasks view to task view of th clicked one
+
                     try {
-                        dbConnection.addTask(t);
+                        int id = dbConnection.addTask(t);
+                        t.setID(id);
+                        VBox Main = (VBox) box.getParent();
+                        //switch the Vbox with id main with all tasks view to task view of th clicked one
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/view.fxml"));
+                        VBox box = loader.load();
+                        List<Node> nodesToRemove = new ArrayList<>();
+                        for (Node node : Main.getChildren()) {
+                            if (node instanceof AnchorPane || node instanceof VBox) {
+                                nodesToRemove.add(node);
+                            }
+                        }
+                        //remove all controls on screen to change display to view Task
+                        Main.getChildren().removeAll(nodesToRemove);
+                        Main.getChildren().add(box);
+                        ViewTaskController controller = loader.getController();
+                        controller.setTask(t);
+
                     } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 }

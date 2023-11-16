@@ -153,8 +153,10 @@ public class DbConnection {
     public void editTaskStatus(int ID, TaskStatus T) {
         String updateStatusSQL = "UPDATE task SET status=? WHERE id=?";
         try (PreparedStatement stmt = dbconn.prepareStatement(updateStatusSQL)) {
-            stmt.setInt(1, ID);
-            stmt.setString(2, T.getStatusText());
+            stmt.setString(1, T.name());
+            stmt.setInt(2, ID);
+            int rowsAffected = stmt.executeUpdate();
+            System.out.println("Rows affected: " + rowsAffected);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -109,7 +109,7 @@ public class Task <T extends Object> implements Comparable<Task>, DeadlineTaskCr
     @Override
     public int AddTask(String title, String description, Date deadline) throws SQLException {
         DbConnection dbConnection= DbConnection.getInstance();
-        dbConnection.addTask(new Task(-1, TaskType.DEADLINE,title,description, TaskStatus.IN_PROGRESS,deadline,new java.util.Date()));
-        return -1;
+        return dbConnection.addTask(new Task(-1, TaskType.DEADLINE,title,description, TaskStatus.IN_PROGRESS,deadline,new java.util.Date()));
+
     }
 }

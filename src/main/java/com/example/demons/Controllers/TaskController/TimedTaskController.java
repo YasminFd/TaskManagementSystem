@@ -1,19 +1,15 @@
 package com.example.demons.Controllers.TaskController;
 
-import com.example.demons.enums.TaskStatus;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class TimedTaskController extends TaskController{
     @FXML
     public Label deadline;
     @FXML
     public VBox border;
+    /*
     public void setDeadline(Date Deadline) {
         Platform.runLater(() -> {//display deadline by changing format
             if (Deadline != null) {
@@ -33,6 +29,6 @@ public class TimedTaskController extends TaskController{
         });
     }
 
-
+*/
 
 }

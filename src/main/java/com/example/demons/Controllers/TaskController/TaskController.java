@@ -1,33 +1,36 @@
 package com.example.demons.Controllers.TaskController;
 
 import com.example.demons.DbConnection;
-import com.example.demons.LambdaInterfaces.StatusLambdaServices;
 import com.example.demons.Models.Task;
-import com.example.demons.enums.TaskStatus;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public abstract class TaskController implements Initializable {
+public abstract class TaskController implements Initializable{
     @FXML
     public VBox border;
     @FXML
     public Label Title,status_text;
     @FXML
-    public Pane status_color;
+    public Circle status_color;
     @FXML
     public Hyperlink delete,view;
     public Task<?> Task;
@@ -38,8 +41,34 @@ public abstract class TaskController implements Initializable {
         border.setFocusTraversable(false);
     }
     @FXML
-    public  void viewTask(ActionEvent actionEvent){
+    public  void viewTask(ActionEvent actionEvent) throws IOException {
+        try {
+            VBox Main = (VBox) border.getParent();
+            //switch the Vbox with id main with all tasks view to task view of th clicked one
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/view.fxml"));
+            VBox box = loader.load();
+            List<Node> nodesToRemove = new ArrayList<>();
+            for (Node node : Main.getChildren()) {
+                if (node instanceof VBox || node instanceof HBox) {
+                    nodesToRemove.add(node);
+                }
+            }
+            //remove all controls on screen to change display to view Task
+            Main.getChildren().removeAll(nodesToRemove);
+            Main.getChildren().add(box);
+            ViewTaskController controller = loader.getController();
+            controller.setTask(this.Task);
 
+            //FlowPane.setMargin(box, new Insets(10, 40,10,500));
+            /*
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/start.fxml"));
+            Parent root = loader.load();
+            //StartController controller = loader.getController();
+            Scene scene = Logo.getScene();
+            scene.setRoot(root);*/
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -64,27 +93,6 @@ public abstract class TaskController implements Initializable {
 
             HBox p = (HBox) main.getParent();
             p.setFocusTraversable(false);
-            //ScrollPane s = (ScrollPane) p.getParent();
-            //s.setFocusTraversable(true);
-            /*
-            Stage previousStage = (Stage) Title.getScene().getWindow();
-
-            // Close the previous stage
-            previousStage.close();
-
-            // Load and show the new stage
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/start.fxml"));
-            Parent startRoot = loader.load();
-            Scene startScene = new Scene(startRoot);
-
-            Stage newStage = new Stage(); // Create a new stage
-            newStage.setTitle("TaDo");
-            newStage.setScene(startScene);
-            newStage.setMaximized(true); // Set the stage to be maximized
-            newStage.show();
-        } catch (IOException e) {
-            e.printStackTrace(); // Handle the exception appropriately
-        }*/
 
             });}
     }
@@ -94,13 +102,13 @@ public abstract class TaskController implements Initializable {
         Title.setText(title);
     }
 
-    public void setStatus_text(TaskStatus status_text) {
+    /*public void setStatus_text(TaskStatus status_text) {
         Platform.runLater(() -> {
             //dsiplay status text based on on tsk status enum
         this.status_text.setText(String.valueOf(status_text.getStatusText()));});
     }
-
-    public void setStatus_color(TaskStatus status) {
+*/
+   /* public void setStatus_color(TaskStatus status) {
         Platform.runLater(() -> {
             //change display of status based on tasks enum status
             if (status == TaskStatus.COMPLETED) {
@@ -111,10 +119,13 @@ public abstract class TaskController implements Initializable {
                 StatusLambdaServices.setOverDue.setStatus(status_color);
             }
         });
-    }
+    }*/
 
     public void setTask(Task<?> task) {
         Task = task;
     }
 
+    public Task getTask() {
+        return Task;
+    }
 }

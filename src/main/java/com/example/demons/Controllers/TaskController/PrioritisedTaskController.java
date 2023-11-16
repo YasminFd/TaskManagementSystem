@@ -1,17 +1,14 @@
 package com.example.demons.Controllers.TaskController;
 
-import com.example.demons.LambdaInterfaces.StatusLambdaServices;
-import com.example.demons.enums.PriorityStatus;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class PrioritisedTaskController extends TaskController{
+public  class PrioritisedTaskController extends TaskController{
     @FXML
     public Label priority;
 
 
-    public void setPriority(PriorityStatus priorityTask) {
+    /*public void setPriority(PriorityStatus priorityTask) {
         Platform.runLater(() -> {
             if (priorityTask != null) {
                 String p = priorityTask.getStatusText(); // Get the priority from the PriorityTask
@@ -30,6 +27,7 @@ public class PrioritisedTaskController extends TaskController{
             }
         });
     }
+*/
 
 
 }

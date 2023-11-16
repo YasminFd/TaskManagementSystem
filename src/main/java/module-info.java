@@ -13,6 +13,7 @@ module com.example.demons {
     exports com.example.demons.Controllers.TaskController;
     exports com.example.demons.Controllers.AddTaskController;
     opens com.example.demons.Controllers.AddTaskController;
+    opens com.example.demons.Controllers.TaskController;
 
 
     // other module configurations

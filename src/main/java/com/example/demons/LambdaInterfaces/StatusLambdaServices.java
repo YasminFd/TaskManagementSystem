@@ -1,27 +1,36 @@
 package com.example.demons.LambdaInterfaces;
 
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 
 public interface StatusLambdaServices {
-    public static StatusSetter<Pane> setCompleted = (p)->{
+    public static StatusSetter<Circle> setCompleted = (p)->{
         //set status color to green and text to Completed
-        String style = "-fx-border-width: 20; -fx-border-style: solid; -fx-border-radius: 20px ;";
-        style += "-fx-border-color: green;";
+        String style ="-fx-stroke: transparent;        /* Stroke (border) color */\n" +
+                "    -fx-stroke-type: inside;        /* Stroke type (INSIDE) */\n" +
+                "    -fx-stroke-width: 1;            /* Stroke width */\n" +
+                "    -fx-radius: 10.0; ";
+        style += "-fx-fill: green;";
         p.setStyle(style);
     };
 
-    public static StatusSetter<Pane> setInProgress = ( p)->{
+    public static StatusSetter<Circle> setInProgress = ( p)->{
         //set status color to red and text to Im Progress
-        String style = "-fx-border-width: 20; -fx-border-style: solid; -fx-border-radius: 20px ;";
-        style += "-fx-border-color: red;";
+        String style ="-fx-stroke: transparent;        /* Stroke (border) color */\n" +
+                "    -fx-stroke-type: inside;        /* Stroke type (INSIDE) */\n" +
+                "    -fx-stroke-width: 1;            /* Stroke width */\n" +
+                "    -fx-radius: 10.0; ";
+        style += "-fx-fill: red;";
         p.setStyle(style);
     };
 
-    public static StatusSetter<Pane> setOverDue = (p)->{
+    public static StatusSetter<Circle> setOverDue = (p)->{
         //set status color to grey and text to Overdue
-        String style = "-fx-border-width: 20; -fx-border-style: solid; -fx-border-radius: 20px ;";
-        style += "-fx-border-color: grey;";
+        String style ="-fx-stroke: transparent;        /* Stroke (border) color */\n" +
+                "    -fx-stroke-type: inside;        /* Stroke type (INSIDE) */\n" +
+                "    -fx-stroke-width: 1;            /* Stroke width */\n" +
+                "    -fx-radius: 10.0; ";
+        style += "-fx-fill: grey;";
         p.setStyle(style);
     };
 

@@ -12,24 +12,29 @@ public class PriorityTaskComparator implements Comparator<Task> {
         PriorityStatus priority1 = (PriorityStatus) o1.getProperty();
         PriorityStatus priority2 = (PriorityStatus) o2.getProperty();
 
-        // Check for priorities
-        if (priority1 == PriorityStatus.HIGH && priority2 != PriorityStatus.HIGH) {
-            return 1; // o1 is considered greater
-        } else if (priority1 != PriorityStatus.HIGH && priority2 == PriorityStatus.HIGH) {
-            return -1; // o2 is considered greater
-        } else if (priority1 == PriorityStatus.MEDIUM && priority2 != PriorityStatus.MEDIUM) {
-            return -1; // o1 is considered greater
-        } else if (priority1 != PriorityStatus.MEDIUM && priority2 == PriorityStatus.MEDIUM) {
-            return 1; // o2 is considered greater
-        } else if (priority1 == PriorityStatus.LOW && priority2 != PriorityStatus.LOW) {
-            return -1; // o1 is considered greater
-        } else if (priority1 != PriorityStatus.LOW && priority2 == PriorityStatus.LOW) {
-            return 1; // o2 is considered greater
-        } else {
-            return o1.compareTo(o2); // Both tasks have the same priority, check created_date
-        }
+        // Assign integer values to priorities for easier comparison
+        int value1 = getPriorityValue(priority1);
+        int value2 = getPriorityValue(priority2);
+
+        // Compare based on priorities
+        return Integer.compare(value1, value2);
         //customised comparision based on the priority of Task
         // -> for sorting Tasks of priority type only
         // Low < Medium < High
     }
+
+    // Helper method to assign integer values to priorities
+    private int getPriorityValue(PriorityStatus priority) {
+        switch (priority) {
+            case HIGH:
+                return 3;
+            case MEDIUM:
+                return 2;
+            case LOW:
+                return 1;
+            default:
+                return 0; // Default case for unexpected priorities
+        }
+    }
+
 }

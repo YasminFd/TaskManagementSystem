@@ -12,6 +12,11 @@ import java.util.function.Predicate;
 
 public class TaskProxy implements DeadlineTaskCreator{
     private Task<Date> RealTask;
+
+    public Task<Date> getRealTask() {
+        return RealTask;
+    }
+
     @Override
     public int AddTask(String title, String description, Date deadline) throws Exception {
         if(!checkDate(deadline)){
