@@ -31,6 +31,7 @@ public class DbConnection {
         }
     }
 
+    // factory method
     public static DbConnection getInstance() {
         if (instance == null) {
             instance = new DbConnection();
@@ -38,6 +39,7 @@ public class DbConnection {
         return instance;
     }
 
+    //Return all tasks to view in home page
     public ArrayList<Task> getAllTasks() throws SQLException {
         ArrayList<Task> tasks = new ArrayList<>();
 
@@ -72,6 +74,7 @@ public class DbConnection {
         return tasks;
     }
 
+    //Return all to do tasks when filtering
     public ArrayList<Task> getAllNormalTask() throws SQLException {
         ArrayList<Task> tasks = new ArrayList<>();
 
@@ -96,6 +99,8 @@ public class DbConnection {
 
         return tasks;
     }
+
+    //Return all prioritised tasks when filtering
     public ArrayList<Task> getAllPrioritisedTasks() throws SQLException {
         ArrayList<Task> tasks = new ArrayList<>();
 
@@ -121,6 +126,7 @@ public class DbConnection {
         return tasks;
     }
 
+    //Return all deadline tasks when filtering
     public ArrayList<Task> getAllTimedTasks() throws SQLException {
         ArrayList<Task> tasks = new ArrayList<>();
 
@@ -150,6 +156,8 @@ public class DbConnection {
 
         return tasks;
     }
+
+    //Change status (Complete, Overdue, In progress)
     public void editTaskStatus(int ID, TaskStatus T) {
         String updateStatusSQL = "UPDATE task SET status=? WHERE id=?";
         try (PreparedStatement stmt = dbconn.prepareStatement(updateStatusSQL)) {
@@ -163,6 +171,7 @@ public class DbConnection {
 
     }
 
+    //Create new task to DB
     public int addTask(Task task) throws SQLException {
         String insertQuery;
 
@@ -224,6 +233,8 @@ public class DbConnection {
         }
 
     }
+
+    //Remove task from DB
     public void deleteTask(int taskId) throws SQLException {
         String deleteQuery = "DELETE FROM task WHERE id = ?";
 

@@ -1,16 +1,8 @@
 package com.example.demons.Controllers.AddTaskController;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class ChooseTypeController {
 
@@ -39,35 +31,9 @@ public class ChooseTypeController {
         });
 
     }
-public String getChosenButton(){
-    RadioButton selectedRadioButton = (RadioButton) grp.getSelectedToggle();
-    String toogleGroupValue = selectedRadioButton.getText();
-    return toogleGroupValue;
-}
-/*
-    public void goToPriority(MouseEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(".fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show(); // You need to show the new scene.
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public String getChosenButton(){
+        RadioButton selectedRadioButton = (RadioButton) grp.getSelectedToggle();
+        String toogleGroupValue = selectedRadioButton.getText();
+        return toogleGroupValue;
     }
-
-    public void goToDeadline(MouseEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("viewDeadline.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show(); // You need to show the new scene.
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }*/
 }

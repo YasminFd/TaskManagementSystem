@@ -2,11 +2,13 @@ package com.example.demons.Controllers.AddTaskController;
 
 import com.example.demons.AddTaskProxy.TaskProxy;
 import com.example.demons.Controllers.TaskController.ViewTaskController;
-import com.example.demons.DbConnection;
+import com.example.demons.Decorator.DeadlineTaskDecorator;
+import com.example.demons.Decorator.SuperViewTask;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -23,7 +25,6 @@ import java.util.ResourceBundle;
 public class ChooseDeadlineController implements Initializable {
     private String title;
     private String description;
-    private DbConnection dbConnection=DbConnection.getInstance();
     @FXML
     public Button add_deadline;
     @FXML
@@ -38,6 +39,7 @@ public class ChooseDeadlineController implements Initializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
@@ -63,10 +65,17 @@ public class ChooseDeadlineController implements Initializable {
                         }
                         //remove all controls on screen to change display to view Task
                         Main.getChildren().removeAll(nodesToRemove);
+
+                        VBox.setMargin(bol,new Insets(50,100,10,180));
                         Main.getChildren().add(bol);
                         ViewTaskController controller = loader.getController();
+
                         proxy.getRealTask().setID(id);
                         controller.setTask(proxy.getRealTask());
+
+                        //call decorator
+                        SuperViewTask view = new DeadlineTaskDecorator();
+                        view.setView(controller);
 
                     } catch (Exception e) {
                         throw new RuntimeException(e);

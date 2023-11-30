@@ -20,7 +20,7 @@ public class TaskProxy implements DeadlineTaskCreator{
     @Override
     public int AddTask(String title, String description, Date deadline) throws Exception {
         if(!checkDate(deadline)){
-            this.RealTask = new Task(-1, TaskType.ToDo,title,description, TaskStatus.IN_PROGRESS,null,new java.util.Date());
+            this.RealTask = new Task(-1, TaskType.DEADLINE,title,description, TaskStatus.IN_PROGRESS,deadline,new java.util.Date());
             return RealTask.AddTask(title,description,deadline);
         }
         else{

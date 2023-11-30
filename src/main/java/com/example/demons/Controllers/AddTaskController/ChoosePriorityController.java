@@ -2,6 +2,8 @@ package com.example.demons.Controllers.AddTaskController;
 
 import com.example.demons.Controllers.TaskController.ViewTaskController;
 import com.example.demons.DbConnection;
+import com.example.demons.Decorator.PrioritisedTaskDecorator;
+import com.example.demons.Decorator.SuperViewTask;
 import com.example.demons.Models.Task;
 import com.example.demons.enums.PriorityStatus;
 import com.example.demons.enums.TaskStatus;
@@ -10,6 +12,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -31,14 +34,8 @@ public class ChoosePriorityController implements Initializable {
     private DbConnection dbConnection=DbConnection.getInstance();
     @FXML
     public Button add_priority;
-    @FXML
-    private RadioButton lowRadioButton;
 
-    @FXML
-    private RadioButton mediumRadioButton;
 
-    @FXML
-    private RadioButton highRadioButton;
 
     @FXML
     private ToggleGroup grp;
@@ -52,6 +49,7 @@ public class ChoosePriorityController implements Initializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
@@ -75,12 +73,17 @@ public class ChoosePriorityController implements Initializable {
                     }
                     //remove all controls on screen to change display to view Task
                     Main.getChildren().removeAll(nodesToRemove);
+                    VBox.setMargin(box,new Insets(50,100,10,180));
                     Main.getChildren().add(box);
                     ViewTaskController controller = loader.getController();
+                    SuperViewTask view = new PrioritisedTaskDecorator();
+                    view.setView(controller);
                     System.out.println(t);
                     controller.setTask(t);
 
                     //Load View For Task with id
+
+
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 } catch (IOException e) {
@@ -89,6 +92,7 @@ public class ChoosePriorityController implements Initializable {
             });
         });
     }
+
     public String getChosenButton(){
         RadioButton selectedRadioButton = (RadioButton) grp.getSelectedToggle();
         String toogleGroupValue = selectedRadioButton.getText();

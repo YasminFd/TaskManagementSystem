@@ -1,5 +1,6 @@
 package com.example.demons.Decorator;
 
+import com.example.demons.Controllers.TaskController.PrioritisedTaskController;
 import com.example.demons.Controllers.TaskController.TaskController;
 import com.example.demons.Controllers.TaskController.TimedTaskController;
 import com.example.demons.Controllers.TaskController.ViewTaskController;
@@ -10,29 +11,25 @@ import javafx.scene.control.Label;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DeadlineTaskDecorator extends SuperViewTask{
+public class DeadlineTaskDecorator extends SuperViewTask<TimedTaskController,ViewTaskController>{
     @Override
-    public void setView(TaskController T) {
+    public void setView(TimedTaskController T) {
         super.setView(T);
-        if(T instanceof TimedTaskController) {
-            TimedTaskController t= (TimedTaskController) T;
-            setDeadline((Date) t.getTask().getProperty(),t.deadline,t.getTask().getStatus());
-        }
+            setDeadline((Date) T.getTask().getProperty(),T.deadline,T.getTask().getStatus());
+
 
     }
 
     @Override
-    public void setFullView(TaskController T) {
+    public void setFullView(ViewTaskController t) {
 
-        if(T instanceof ViewTaskController){
-            ViewTaskController t = (ViewTaskController) T;
             super.setFullView(t);
             if(t.getTask().getStatus()==TaskStatus.OVERDUE){
                 t.edit.setVisible(false);
             }
             t.deadline_box.setVisible(true);
             setDeadline((Date) t.getTask().getProperty(),t.deadline,t.getTask().getStatus());
-        }
+
 
     }
 

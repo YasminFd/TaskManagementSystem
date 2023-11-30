@@ -10,19 +10,21 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
-public class SuperViewTask implements ViewTaskDecorator{
+public class SuperViewTask<T extends TaskController,U extends TaskController> implements ViewTaskDecorator<T,U>{
+
     @Override
-    public void setView(TaskController T) {
+    public void setView(T T) {
         System.out.println("Inside:\n"+T.getTask());
         setStatus_color(T.getTask().getStatus(),T.status_color);
         setStatus_text(T.getTask().getStatus(),T.status_text);
         T.setTitle(T.getTask().getTitle());
     }
 
+
     @Override
-    public void setFullView(TaskController T) {
+    public void setFullView(U T) {
         System.out.println("Inside:\n"+T.getTask());
-        setView(T);
+        setView((T)T);
         setBorder(T.getTask().getType(),T.getTask().getStatus() ,T.border);
         ViewTaskController t =(ViewTaskController) T;
         t.description.setText(t.getTask().getDescription());
@@ -51,24 +53,30 @@ public class SuperViewTask implements ViewTaskDecorator{
     @Override
     public void setBorder(TaskType T, TaskStatus status, VBox border) {
 
-        switch (T) {//depending on each type use the needed factory
+        String borderStyle = border.getStyle();
+
+        switch (T) {
             case ToDo:
-                border.setStyle(border.getStyle()+"-fx-border-color: #8CC0DE;");
+                // Adjusted shade for To Do type
+                border.setStyle(borderStyle + "-fx-border-color: #6caad9;");
                 break;
             case PRIORITISED:
-                border.setStyle(border.getStyle()+"-fx-border-color: #EF9595;");
+                // Adjusted shade for PRIORITISED type
+                border.setStyle(borderStyle + "-fx-border-color: #c16666;");
                 break;
             case DEADLINE:
-                if(status==TaskStatus.OVERDUE){
-                    border.setStyle(border.getStyle()+"-fx-border-color: grey;");
-                }
-                else{
-                    border.setStyle(border.getStyle()+"-fx-border-color: #8ACB88;");
+                if (status == TaskStatus.OVERDUE) {
+                    // Adjusted shade for overdue tasks
+                    border.setStyle(borderStyle + "-fx-border-color: grey;");
+                } else {
+                    // Adjusted shade for non-overdue tasks
+                    border.setStyle(borderStyle + "-fx-border-color: #5b9862;");
                 }
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported task type");
         }
     }
+
 
 }

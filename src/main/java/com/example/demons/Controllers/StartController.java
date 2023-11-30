@@ -39,6 +39,7 @@ public class StartController implements Initializable {
     @FXML
     public ScrollPane scroll_pane;
     private ArrayList<Task> Tasks;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {//called as the fxml is loaded
         //get All tasks from DB by calling defined Lambda expression
@@ -56,7 +57,6 @@ public class StartController implements Initializable {
             //return to main page with view of all tasks
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/start.fxml"));
             Parent root = loader.load();
-            //StartController controller = loader.getController();
             Scene scene = Logo.getScene();
             scene.setRoot(root);
         } catch (IOException e) {
@@ -79,12 +79,7 @@ public class StartController implements Initializable {
             Main.getChildren().add(box);
             AddTaskController controller = loader.getController();
 
-            FlowPane.setMargin(box, new Insets(10));/*
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/start.fxml"));
-            Parent root = loader.load();
-            //StartController controller = loader.getController();
-            Scene scene = Logo.getScene();
-            scene.setRoot(root);*/
+            FlowPane.setMargin(box, new Insets(10));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -116,7 +111,9 @@ public class StartController implements Initializable {
         System.out.println("Selected Option: " + selectedOption);
         Load_Screen();
     }
+
     private void Load_Screen(){
+        //lambda expression to prevent lauding the screen before adding children to the container
         Platform.runLater(() -> {
 
             //if there is any nodes remove to replace with new
@@ -128,7 +125,7 @@ public class StartController implements Initializable {
             }
             Main.getChildren().removeAll(nodesToRemove);
 
-            //sout tasks on terminal
+            //Print tasks on terminal
             for (Task<?> R : Tasks)
                 System.out.printf(R.toString());
             Insets margin = new Insets(30, 30, 15, 300);

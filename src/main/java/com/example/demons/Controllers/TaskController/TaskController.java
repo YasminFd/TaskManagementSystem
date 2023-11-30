@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -33,6 +34,7 @@ public abstract class TaskController implements Initializable{
     public Circle status_color;
     @FXML
     public Hyperlink delete,view;
+
     public Task<?> Task;
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,14 +60,7 @@ public abstract class TaskController implements Initializable{
             Main.getChildren().add(box);
             ViewTaskController controller = loader.getController();
             controller.setTask(this.Task);
-
-            //FlowPane.setMargin(box, new Insets(10, 40,10,500));
-            /*
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/start.fxml"));
-            Parent root = loader.load();
-            //StartController controller = loader.getController();
-            Scene scene = Logo.getScene();
-            scene.setRoot(root);*/
+            VBox.setMargin(box, new Insets(100,180,10,180));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -87,7 +82,6 @@ public abstract class TaskController implements Initializable{
         id= Task.getID();
         dbConnection.deleteTask(id);
         Platform.runLater(() -> {
-            //try {
 
                 main.getChildren().remove(border);
 
@@ -97,29 +91,9 @@ public abstract class TaskController implements Initializable{
             });}
     }
 
-
     public void setTitle(String title) {
         Title.setText(title);
     }
-
-    /*public void setStatus_text(TaskStatus status_text) {
-        Platform.runLater(() -> {
-            //dsiplay status text based on on tsk status enum
-        this.status_text.setText(String.valueOf(status_text.getStatusText()));});
-    }
-*/
-   /* public void setStatus_color(TaskStatus status) {
-        Platform.runLater(() -> {
-            //change display of status based on tasks enum status
-            if (status == TaskStatus.COMPLETED) {
-                StatusLambdaServices.setCompleted.setStatus(status_color);
-            } else if (status == TaskStatus.IN_PROGRESS) {
-                StatusLambdaServices.setInProgress.setStatus(status_color);
-            }else if((status == TaskStatus.OVERDUE)){
-                StatusLambdaServices.setOverDue.setStatus(status_color);
-            }
-        });
-    }*/
 
     public void setTask(Task<?> task) {
         Task = task;

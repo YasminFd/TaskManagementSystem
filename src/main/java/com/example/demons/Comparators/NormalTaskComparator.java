@@ -25,9 +25,9 @@ import java.util.Comparator;
             } else {
                 return o1.compareTo(o2); // Both tasks have the same status check created_date
             }
-            //customised comparision based on the status of Task
+            //customised comparison based on the status of Task
             // -> for sorting Tasks of normal type only
-            // Completed greater than inprogress
+            // Completed greater than in progress
         }
     }
 

@@ -11,31 +11,31 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox style="-fx-background-color: #FAF0D7;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demons.Controllers.StartController">
+<HBox style="-fx-background-color: #FAF0D7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demons.Controllers.StartController">
    <children>
       <ScrollPane fx:id="scroll_pane" fitToWidth="true" style="-fx-background-color: #FAF0D7;" HBox.hgrow="ALWAYS">
          <content>
             <HBox fillHeight="true" pickOnBounds="false" prefHeight="1000.0" prefWidth="1000.0" style="-fx-background-color: #FAF0D7;" HBox.hgrow="ALWAYS">
                <children>
-                  <VBox alignment="TOP_CENTER" prefWidth="102.0" style="-fx-background-color: #D5CBB3;" HBox.hgrow="NEVER">
+                  <VBox alignment="TOP_CENTER" prefHeight="1000.0" prefWidth="126.0" style="-fx-background-color: #cccccc;" HBox.hgrow="NEVER">
                      <children>
-                        <ImageView fx:id="Logo" fitHeight="113.0" fitWidth="127.0" onMouseClicked="#goToHomePage" pickOnBounds="true" preserveRatio="true">
-                           <VBox.margin>
-                              <Insets bottom="30.0" top="10.0" />
-                           </VBox.margin>
+                        <ImageView fx:id="Logo" fitHeight="100.0" fitWidth="114.0" onMouseClicked="#goToHomePage" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/Logo.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="allTasks" fitHeight="56.0" fitWidth="62.0" onMouseClicked="#goToHomePage" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/allTasks.png" />
+                              <Image url="@images/logo2.png" />
                            </image>
                            <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              <Insets bottom="10.0" top="10.0" />
                            </VBox.margin>
                         </ImageView>
-                        <ImageView fx:id="addTask" fitHeight="51.0" fitWidth="48.0" onMouseClicked="#goToAddTask" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="allTasks" fitHeight="63.0" fitWidth="67.0" onMouseClicked="#goToHomePage" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/calendar.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="13.0" left="17.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="addTask" fitHeight="54.0" fitWidth="59.0" onMouseClicked="#goToAddTask" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/add.png" />
                            </image>
@@ -45,7 +45,7 @@
                         </ImageView>
                      </children>
                   </VBox>
-                  <VBox fx:id="Main" prefHeight="720.0" HBox.hgrow="ALWAYS">
+                  <VBox fx:id="Main" prefHeight="720.0" style="-fx-background-color: #FAF0D7;" HBox.hgrow="ALWAYS">
                      <children>
                         <HBox fx:id="filtering" alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>

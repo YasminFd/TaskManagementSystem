@@ -18,7 +18,7 @@ public class PriorityTaskComparator implements Comparator<Task> {
 
         // Compare based on priorities
         return Integer.compare(value1, value2);
-        //customised comparision based on the priority of Task
+        //customised comparison based on the priority of Task
         // -> for sorting Tasks of priority type only
         // Low < Medium < High
     }

@@ -8,27 +8,20 @@ import com.example.demons.enums.PriorityStatus;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
-public class PrioritisedTaskDecorator extends SuperViewTask{
+public class PrioritisedTaskDecorator extends SuperViewTask<PrioritisedTaskController,ViewTaskController>{
     @Override
-    public void setView(TaskController T) {
+    public void setView(PrioritisedTaskController T) {
         super.setView(T);
-        if(T instanceof PrioritisedTaskController) {
-            PrioritisedTaskController t = (PrioritisedTaskController) T;
-            setPriority((PriorityStatus)t.getTask().getProperty(),t.priority);
-            t.priority.setVisible(true);
-        }
+            setPriority((PriorityStatus)T.getTask().getProperty(), T.priority);
+            T.priority.setVisible(true);
+
 
     }
     @Override
-    public void setFullView(TaskController T) {
-
-        if(T instanceof ViewTaskController){
-            ViewTaskController t = (ViewTaskController) T;
-            super.setFullView(t);
-            t.priority_box.setVisible(true);
-            setPriority((PriorityStatus) t.getTask().getProperty(),t.priority);
-        }
-
+    public void setFullView(ViewTaskController T) {
+            super.setFullView(T);
+            T.priority_box.setVisible(true);
+            setPriority((PriorityStatus) T.getTask().getProperty(),T.priority);
     }
 
     public void setPriority(PriorityStatus priorityTask, Label priority) {

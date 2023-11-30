@@ -7,26 +7,26 @@ import com.example.demons.Decorator.SuperViewTask;
 import com.example.demons.enums.TaskStatus;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class ViewTaskController extends TaskController implements Initializable {
+public class ViewTaskController extends TaskController {
     @FXML
     public HBox deadline_box, priority_box;
     @FXML
     public Label description,priority,deadline;
     @FXML
     public Hyperlink edit;
-    //@FXML
-    //public Circle status_color;
-    //private Task Task;
-    SuperViewTask view ;
 
+    //Decorator
+    private SuperViewTask view ;
 
 
     @Override
@@ -34,6 +34,8 @@ public class ViewTaskController extends TaskController implements Initializable 
         Platform.runLater(() -> {
             System.out.println("Viewing:\n"+Task);
             initializeView();
+            //It is lambda expression on event listener
+            //If Complete -> In Progress vice versa
             edit.setOnAction(event -> {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Confirmation Dialog");
@@ -68,24 +70,24 @@ public class ViewTaskController extends TaskController implements Initializable 
 
         });
     }
+
+    //To choose appropriate display of the task initialize with adequate decorator
     private void initializeView() {
         System.out.println("Viewing:\n" + Task);
         switch (Task.getType()) {
             case ToDo:
                 view = new SuperViewTask();
-                view.setFullView(this);
                 break;
             case PRIORITISED:
                 view = new PrioritisedTaskDecorator();
-                view.setFullView(this);
                 break;
             case DEADLINE:
                 view = new DeadlineTaskDecorator();
-                view.setFullView(this);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported task type");
         }
+        view.setFullView(this);
     }
 
 }

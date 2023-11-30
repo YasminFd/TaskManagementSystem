@@ -43,7 +43,7 @@ public interface StatusLambdaServices {
     public static StatusSetter<Label> setMEDIUM = ( p)->{
         // set status label to yellow with text Medium
         p.setText("MEDIUM");
-        p.setStyle("-fx-text-fill: yellow; -fx-font-weight: bold;");
+        p.setStyle("-fx-text-fill: blue; -fx-font-weight: bold;");
     };
 
     public static StatusSetter<Label> setHIGH = ( p)->{
