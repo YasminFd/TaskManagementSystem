@@ -1,6 +1,7 @@
 package com.example.demons.Controllers.AddTaskController;
 
 import com.example.demons.AddTaskProxy.TaskProxy;
+import com.example.demons.Controllers.TaskController.LoadView;
 import com.example.demons.Controllers.TaskController.ViewTaskController;
 import com.example.demons.Decorator.DeadlineTaskDecorator;
 import com.example.demons.Decorator.SuperViewTask;
@@ -73,9 +74,6 @@ public class ChooseDeadlineController implements Initializable {
                         proxy.getRealTask().setID(id);
                         controller.setTask(proxy.getRealTask());
 
-                        //call decorator
-                        SuperViewTask view = new DeadlineTaskDecorator();
-                        view.setView(controller);
 
                     } catch (Exception e) {
                         throw new RuntimeException(e);

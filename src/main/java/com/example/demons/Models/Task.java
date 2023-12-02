@@ -8,7 +8,7 @@ import com.example.demons.enums.TaskType;
 import java.sql.SQLException;
 import java.util.Date;
 
-public class Task <T extends Object> implements Comparable<Task>, DeadlineTaskCreator {//to customise compare To
+public class Task <T > implements Comparable<Task>, DeadlineTaskCreator {//to customise compare To
     //Generis Class
     private int ID;
     private String Title;

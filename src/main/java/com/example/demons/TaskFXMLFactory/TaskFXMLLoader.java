@@ -5,7 +5,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public abstract interface TaskFXMLLoader {
+public abstract interface TaskFXMLLoader<T> {
     //creation logic to be encapsulated
-    public VBox createTaskFXML(Task<?> task) throws IOException;
+    public VBox createTaskFXML(Task<T> task) throws IOException;
 }

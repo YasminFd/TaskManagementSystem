@@ -8,11 +8,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.Date;
 
-public class TimedTaskLoader implements TaskFXMLLoader {
+public class TimedTaskLoader implements TaskFXMLLoader<Date> {
     //Loads fxml of deadline task type + set its properties
     @Override
-    public VBox createTaskFXML(Task<?> task) throws IOException {
+    public VBox createTaskFXML(Task<Date> task) throws IOException {
         SuperViewTask view= new DeadlineTaskDecorator();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/Timed Task.fxml"));
         VBox box = loader.load();

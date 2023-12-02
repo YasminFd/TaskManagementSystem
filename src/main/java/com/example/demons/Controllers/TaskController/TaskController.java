@@ -1,6 +1,8 @@
 package com.example.demons.Controllers.TaskController;
 
 import com.example.demons.DbConnection;
+import com.example.demons.Decorator.PrioritisedTaskDecorator;
+import com.example.demons.Decorator.SuperViewTask;
 import com.example.demons.Models.Task;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -36,6 +38,7 @@ public abstract class TaskController implements Initializable{
     public Hyperlink delete,view;
 
     public Task<?> Task;
+    public ViewTaskController controller;
 
     public void initialize(URL location, ResourceBundle resources) {
         delete.setFocusTraversable(false);
@@ -58,9 +61,11 @@ public abstract class TaskController implements Initializable{
             //remove all controls on screen to change display to view Task
             Main.getChildren().removeAll(nodesToRemove);
             Main.getChildren().add(box);
-            ViewTaskController controller = loader.getController();
-            controller.setTask(this.Task);
             VBox.setMargin(box, new Insets(100,180,10,180));
+            controller = loader.getController();
+            controller.setTask(this.Task);
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }

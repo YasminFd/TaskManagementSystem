@@ -6,7 +6,7 @@ import java.sql.SQLException;
 //interface implementing lambda expressions from GetTasks to get tasks of chosen type
 public interface TaskLambdaServices {
     public DbConnection dbconn = DbConnection.getInstance();
-    public static GetTasks getAll = ()->{
+    GetTasks getAll = ()->{
     //gets all tasks
         try {
             return dbconn.getAllTasks();
@@ -14,7 +14,7 @@ public interface TaskLambdaServices {
             throw new RuntimeException(e);
         }
     };
-    public static GetTasks getToDoTasks = ()->{
+    GetTasks getToDoTasks = ()->{
     //gets tasks of type to do
         try {
             return dbconn.getAllNormalTask();
@@ -23,7 +23,7 @@ public interface TaskLambdaServices {
         }
     };
 
-    public static GetTasks getPrioritisedTasks = ()->{
+    GetTasks getPrioritisedTasks = ()->{
     //get tasks of type priority
         try {
             return dbconn.getAllPrioritisedTasks();
@@ -32,7 +32,7 @@ public interface TaskLambdaServices {
         }
     };
 
-    public static GetTasks getDeadlineTasks = ()->{
+    GetTasks getDeadlineTasks = ()->{
     // get tasks of type deadline
         try {
             return dbconn.getAllTimedTasks();

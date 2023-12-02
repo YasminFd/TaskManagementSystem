@@ -10,24 +10,26 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
-public class SuperViewTask<T extends TaskController,U extends TaskController> implements ViewTaskDecorator<T,U>{
+public class SuperViewTask<T extends TaskController> implements ViewTaskDecorator<T>{
 
     @Override
-    public void setView(T T) {
-        System.out.println("Inside:\n"+T.getTask());
-        setStatus_color(T.getTask().getStatus(),T.status_color);
-        setStatus_text(T.getTask().getStatus(),T.status_text);
-        T.setTitle(T.getTask().getTitle());
+    public void setView(T c) {
+        System.out.println("Inside:\n"+c.getTask());
+        setStatus_color(c.getTask().getStatus(),c.status_color);
+        setStatus_text(c.getTask().getStatus(),c.status_text);
+        c.setTitle(c.getTask().getTitle());
     }
 
 
     @Override
-    public void setFullView(U T) {
-        System.out.println("Inside:\n"+T.getTask());
-        setView((T)T);
-        setBorder(T.getTask().getType(),T.getTask().getStatus() ,T.border);
-        ViewTaskController t =(ViewTaskController) T;
-        t.description.setText(t.getTask().getDescription());
+    public void setFullView(TaskController t) {
+        System.out.println("Inside:\n"+t.getTask());
+        setStatus_color(t.getTask().getStatus(),t.status_color);
+        setStatus_text(t.getTask().getStatus(),t.status_text);
+        t.setTitle(t.getTask().getTitle());
+        setBorder(t.getTask().getType(),t.getTask().getStatus() ,t.border);
+        ViewTaskController T =(ViewTaskController) t;
+        T.description.setText(t.getTask().getDescription());
     }
 
     @Override

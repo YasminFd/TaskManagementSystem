@@ -1,5 +1,6 @@
 package com.example.demons.Controllers.AddTaskController;
 
+import com.example.demons.Controllers.TaskController.LoadView;
 import com.example.demons.Controllers.TaskController.ViewTaskController;
 import com.example.demons.DbConnection;
 import com.example.demons.Decorator.PrioritisedTaskDecorator;
@@ -76,10 +77,9 @@ public class ChoosePriorityController implements Initializable {
                     VBox.setMargin(box,new Insets(50,100,10,180));
                     Main.getChildren().add(box);
                     ViewTaskController controller = loader.getController();
-                    SuperViewTask view = new PrioritisedTaskDecorator();
-                    view.setView(controller);
-                    System.out.println(t);
                     controller.setTask(t);
+                    System.out.println(t);
+
 
                     //Load View For Task with id
 

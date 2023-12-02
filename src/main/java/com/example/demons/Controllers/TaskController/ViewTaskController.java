@@ -26,14 +26,15 @@ public class ViewTaskController extends TaskController {
     public Hyperlink edit;
 
     //Decorator
-    private SuperViewTask view ;
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
             System.out.println("Viewing:\n"+Task);
-            initializeView();
+            //call decorator
+            LoadView.initializeView(Task,this);
             //It is lambda expression on event listener
             //If Complete -> In Progress vice versa
             edit.setOnAction(event -> {
@@ -53,7 +54,7 @@ public class ViewTaskController extends TaskController {
                         DbConnection db = DbConnection.getInstance();
                         db.editTaskStatus(Task.getID(), TaskStatus.IN_PROGRESS);
                         Task.setStatus(TaskStatus.IN_PROGRESS);
-                        initializeView();
+                        LoadView.initializeView(this.Task,this);
 
                     }
                     else{
@@ -62,7 +63,7 @@ public class ViewTaskController extends TaskController {
                         DbConnection db = DbConnection.getInstance();
                         db.editTaskStatus(Task.getID(), TaskStatus.COMPLETED);
                         Task.setStatus(TaskStatus.COMPLETED);
-                        initializeView();
+                        LoadView.initializeView(this.Task,this);
                     }
                 }
             });
@@ -72,22 +73,6 @@ public class ViewTaskController extends TaskController {
     }
 
     //To choose appropriate display of the task initialize with adequate decorator
-    private void initializeView() {
-        System.out.println("Viewing:\n" + Task);
-        switch (Task.getType()) {
-            case ToDo:
-                view = new SuperViewTask();
-                break;
-            case PRIORITISED:
-                view = new PrioritisedTaskDecorator();
-                break;
-            case DEADLINE:
-                view = new DeadlineTaskDecorator();
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported task type");
-        }
-        view.setFullView(this);
-    }
+
 
 }

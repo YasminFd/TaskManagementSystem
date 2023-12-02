@@ -1,5 +1,6 @@
 package com.example.demons.Controllers.AddTaskController;
 
+import com.example.demons.Controllers.TaskController.LoadView;
 import com.example.demons.Controllers.TaskController.ViewTaskController;
 import com.example.demons.DbConnection;
 import com.example.demons.Decorator.SuperViewTask;
@@ -128,8 +129,6 @@ public class AddTaskController implements Initializable {
                         Main.getChildren().add(box);
                         ViewTaskController controller = loader.getController();
                         controller.setTask(t);
-                        SuperViewTask s = new SuperViewTask();
-                        s.setFullView(controller);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     } catch (IOException e) {

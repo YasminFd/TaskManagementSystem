@@ -7,9 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
-public interface ViewTaskDecorator<T extends TaskController, U extends TaskController> {
+public interface ViewTaskDecorator<T extends TaskController> {
     public void setView(T t );
-    public void setFullView( U t);
+    public void setFullView( TaskController t);
     public void setStatus_text(TaskStatus status_text, Label status);
     public void setStatus_color(TaskStatus status, Circle status_color);
     public void setBorder(TaskType T, TaskStatus status, VBox border);
