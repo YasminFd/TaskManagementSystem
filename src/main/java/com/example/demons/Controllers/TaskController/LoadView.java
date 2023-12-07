@@ -6,6 +6,7 @@ import com.example.demons.Decorator.SuperViewTask;
 import com.example.demons.Models.Task;
 
 public interface LoadView {
+    //used to choose appropiriate decorator depending on tas type
     public static void initializeView(Task Task, ViewTaskController Controller) {
 
         System.out.println("Viewing:\n" + Task);

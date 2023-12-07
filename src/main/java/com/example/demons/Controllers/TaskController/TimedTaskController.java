@@ -13,9 +13,5 @@ public class TimedTaskController extends TaskController{
     @FXML
     public VBox border;
 
-    @Override
-    public void viewTask(ActionEvent actionEvent) throws IOException {
-        super.viewTask(actionEvent);
-        LoadView.initializeView(this.Task,controller);
-    }
+
 }

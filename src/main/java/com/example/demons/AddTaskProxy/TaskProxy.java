@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.function.Predicate;
 
 public class TaskProxy implements DeadlineTaskCreator{
+    //proxy task created instead of task at first to check its validity
     private Task<Date> RealTask;
 
     public Task<Date> getRealTask() {

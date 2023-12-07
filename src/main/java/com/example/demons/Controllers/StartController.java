@@ -18,10 +18,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -70,7 +67,8 @@ public class StartController implements Initializable {
             AnchorPane box = loader.load();
             List<Node> nodesToRemove = new ArrayList<>();
             for (Node node : Main.getChildren()) {
-                if (node instanceof VBox || node instanceof HBox) {
+                if (node instanceof VBox || node instanceof HBox ||
+                        node instanceof AnchorPane || node instanceof Pane) {
                     nodesToRemove.add(node);
                 }
             }

@@ -9,18 +9,18 @@ import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
-
+//implements  methods for decorator to set view and its appropiriate attributes
 public class SuperViewTask<T extends TaskController> implements ViewTaskDecorator<T>{
 
     @Override
-    public void setView(T c) {
+    public void setView(T c) {// generic that takes task controller better approach than using instance of as it is inherited
         System.out.println("Inside:\n"+c.getTask());
         setStatus_color(c.getTask().getStatus(),c.status_color);
         setStatus_text(c.getTask().getStatus(),c.status_text);
         c.setTitle(c.getTask().getTitle());
     }
 
-
+//set full view
     @Override
     public void setFullView(TaskController t) {
         System.out.println("Inside:\n"+t.getTask());
@@ -35,7 +35,7 @@ public class SuperViewTask<T extends TaskController> implements ViewTaskDecorato
     @Override
     public void setStatus_text(TaskStatus status_text, Label status) {
         Platform.runLater(() -> {
-            //dsiplay status text based on on tsk status enum
+            //dsiplay status text based  on tsk status enum
             status.setText(String.valueOf(status_text.getStatusText()));});
     }
 

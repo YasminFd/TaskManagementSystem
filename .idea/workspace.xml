@@ -4,30 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="909ea02f-05f7-4784-9f48-27e9537c0bb4" name="Changes" comment="images">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/TaskController/LoadView.java" afterDir="false" />
+    <list default="true" id="909ea02f-05f7-4784-9f48-27e9537c0bb4" name="Changes" comment="fixed decorator">
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/AddTaskController/AddTaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/AddTaskController/AddTaskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/AddTaskProxy/DeadlineTaskCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/AddTaskProxy/DeadlineTaskCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/AddTaskProxy/TaskProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/AddTaskProxy/TaskProxy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/AddTaskController/ChooseDeadlineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/AddTaskController/ChooseDeadlineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/AddTaskController/ChoosePriorityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/AddTaskController/ChoosePriorityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/AddTaskController/ChooseTypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/AddTaskController/ChooseTypeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/StartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/StartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/TaskController/LoadView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/TaskController/LoadView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/TaskController/NormalTaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/TaskController/NormalTaskController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/TaskController/PrioritisedTaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/TaskController/PrioritisedTaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/TaskController/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/TaskController/TaskController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/TaskController/TimedTaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/TaskController/TimedTaskController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/TaskController/ViewTaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/TaskController/ViewTaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Decorator/DeadlineTaskDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Decorator/DeadlineTaskDecorator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Decorator/PrioritisedTaskDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Decorator/PrioritisedTaskDecorator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/DbConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/DbConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Decorator/SuperViewTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Decorator/SuperViewTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Decorator/ViewTaskDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Decorator/ViewTaskDecorator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/FilterStrategy/FilterTasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/FilterStrategy/FilterTasks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/LambdaInterfaces/GetTasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/LambdaInterfaces/GetTasks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/LambdaInterfaces/StatusLambdaServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/LambdaInterfaces/StatusLambdaServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/LambdaInterfaces/StatusSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/LambdaInterfaces/StatusSetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/LambdaInterfaces/TaskLambdaServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/LambdaInterfaces/TaskLambdaServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/Models/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/Models/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/TaskFXMLFactory/PrioritisedTaskLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/TaskFXMLFactory/PrioritisedTaskLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/TaskFXMLFactory/TaskFXMLLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/TaskFXMLFactory/TaskFXMLLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/TaskFXMLFactory/TimedTaskLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/TaskFXMLFactory/TimedTaskLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/TaskFXMLFactory/ToDoTaskLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/TaskFXMLFactory/ToDoTaskLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demons/SortStrategy/SortTasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demons/SortStrategy/SortTasks.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,25 +101,20 @@
       <option name="presentableId" value="Default" />
       <updated>1701347889410</updated>
     </task>
+    <task id="LOCAL-00001" summary="fixed decorator">
+      <option name="closed" value="true" />
+      <created>1701553782004</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701553782004</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixes" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/demons/Controllers/TaskController/LoadView.java</url>
-          <line>8</line>
-          <properties class="com.example.demons.Controllers.TaskController.LoadView" method="initializeView">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="fixed decorator" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed decorator" />
   </component>
 </project>

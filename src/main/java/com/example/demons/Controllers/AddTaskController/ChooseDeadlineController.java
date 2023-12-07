@@ -50,10 +50,11 @@ public class ChooseDeadlineController implements Initializable {
                 if (selectedDate != null) {
                     System.out.println("Selected Date: " + selectedDate);
                     Date d = Date.valueOf(selectedDate);
-                    // You can do something with the selected date here
+                    //create proxy first for validation before proceeding with the real one
                     TaskProxy proxy= new TaskProxy();
                     try {
-                        int id = proxy.AddTask(title,description,d);
+                        //add task but first checks if valid
+                        int id = proxy.AddTask(title,description,d);//thros exception if not
                         VBox Main = (VBox) pane.getParent().getParent().getParent();
                         //switch the Vbox with id main with all tasks view to task view of th clicked one
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demons/view.fxml"));
@@ -70,7 +71,7 @@ public class ChooseDeadlineController implements Initializable {
                         VBox.setMargin(bol,new Insets(50,100,10,180));
                         Main.getChildren().add(bol);
                         ViewTaskController controller = loader.getController();
-
+                        //return real task created after identified its valid
                         proxy.getRealTask().setID(id);
                         controller.setTask(proxy.getRealTask());
 

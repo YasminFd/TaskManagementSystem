@@ -22,7 +22,7 @@ public class ChooseTypeController {
         PriorityRadio.setToggleGroup(grp);
         DeadlineRadio.setToggleGroup(grp);
 
-        // You can add a listener to perform an action when a RadioButton is selected.
+        //  add a listener to perform an action when a RadioButton is selected.
         grp.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 RadioButton selectedRadioButton = (RadioButton) newValue;
@@ -31,6 +31,7 @@ public class ChooseTypeController {
         });
 
     }
+    //return value chosen
     public String getChosenButton(){
         RadioButton selectedRadioButton = (RadioButton) grp.getSelectedToggle();
         String toogleGroupValue = selectedRadioButton.getText();

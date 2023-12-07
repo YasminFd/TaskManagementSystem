@@ -8,5 +8,7 @@ public interface SortTasks {
     /*. In order to be able to encapsulate the sort logic in one interface and be
 able to define different strategies to sort the tasks with consideration of the addition of new sorting
 options without modifying existing code, strategy pattern is needed.*/
+
+    //same goal: sort task -> different approaches: by deadline, by priority, by status
     public void sort(ArrayList<Task> T);
 }

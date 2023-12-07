@@ -7,6 +7,15 @@ import com.example.demons.enums.TaskType;
 
 import java.sql.SQLException;
 import java.util.Date;
+//provide a versatile and reusable abstraction,
+// enabling the creation of classes and functions that
+// can operate on a variety of data types, promoting code
+// flexibility and reducing redundancy.
+
+
+
+
+
 
 public class Task <T > implements Comparable<Task>, DeadlineTaskCreator {//to customise compare To
     //Generis Class

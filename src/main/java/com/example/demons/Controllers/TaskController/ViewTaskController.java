@@ -63,6 +63,7 @@ public class ViewTaskController extends TaskController {
                         DbConnection db = DbConnection.getInstance();
                         db.editTaskStatus(Task.getID(), TaskStatus.COMPLETED);
                         Task.setStatus(TaskStatus.COMPLETED);
+                        //CALL METHOD TO CHOOSE APPROPIRIATE DECORATOR
                         LoadView.initializeView(this.Task,this);
                     }
                 }
@@ -72,7 +73,7 @@ public class ViewTaskController extends TaskController {
         });
     }
 
-    //To choose appropriate display of the task initialize with adequate decorator
+
 
 
 }

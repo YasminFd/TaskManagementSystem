@@ -9,7 +9,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.function.Predicate;
-
+/*Our application must provide the user the ability to save his tasks and be able to retrieve, and
+manipulate them whenever it is needed. For that, a database connection is a must, and in order to
+provide consistency and ensure mutual exclusion when manipulating data, it I preferable to ensure
+that the database is connected once and other classes have access to its instance in an organised
+manner. The solution is to use Singleton design pattern.*/
 public class DbConnection {
 
     private static DbConnection instance;
