@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="border" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="766.0" style="-fx-background-color: #faf0d7; -fx-border-color: #8acb88; -fx-border-width: 5; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demons.Controllers.TaskController.ViewTaskController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="400.0">
+         <children>
+            <Label fx:id="Title" prefHeight="61.0" prefWidth="190.0" text="Task Title" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Hyperlink fx:id="edit" alignment="TOP_RIGHT" contentDisplay="RIGHT" style="-fx-border-style: none; -fx-border-color: none;" text="Edit Status">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Hyperlink>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="30.0" prefWidth="200.0" spacing="130.0">
+         <children>
+            <HBox fx:id="priority_box" prefHeight="30.0" prefWidth="501.0" visible="false">
+               <children>
+                  <Label text="Priority:">
+                     <font>
+                        <Font name="System Italic" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="priority" prefHeight="30.0" prefWidth="139.0" text="HIGH" textFill="#d32424">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="200.0">
+               <children>
+                  <Circle fx:id="status_color" fill="#8acb88" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE">
+                     <HBox.margin>
+                        <Insets bottom="5.0" right="5.0" />
+                     </HBox.margin>
+                  </Circle>
+                  <Label fx:id="status_text" prefHeight="21.0" prefWidth="169.0" text="Ongoing" textAlignment="RIGHT">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets left="30.0" right="30.0" />
+         </VBox.margin>
+      </Separator>
+      <HBox prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #aaaaaa; -fx-border-radius: 3;">
+         <children>
+            <Label fx:id="description" text="Description">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox fx:id="deadline_box" alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" visible="false">
+         <children>
+            <Label prefHeight="30.0" prefWidth="69.0" text="Due:">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="deadline" prefHeight="33.0" prefWidth="141.0" text="2/11/2023">
+               <HBox.margin>
+                  <Insets bottom="10.0" right="30.0" top="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</VBox>

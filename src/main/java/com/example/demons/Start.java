@@ -1,9 +1,9 @@
 package com.example.demons;
 
+import com.example.demons.Controllers.StartController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -11,10 +11,13 @@ import java.io.IOException;
 public class Start extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        //Start the application
         FXMLLoader fxmlLoader = new FXMLLoader(Start.class.getResource("start.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), javafx.stage.Screen.getPrimary().getVisualBounds().getWidth(), javafx.stage.Screen.getPrimary().getVisualBounds().getHeight());
+        StartController controller = fxmlLoader.getController();
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
         stage.setTitle("TaDo");
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 

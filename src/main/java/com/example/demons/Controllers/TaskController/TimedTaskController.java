@@ -1,13 +1,17 @@
 package com.example.demons.Controllers.TaskController;
 
-import com.example.demons.Models.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
-import java.util.Date;
+import java.io.IOException;
 
 public class TimedTaskController extends TaskController{
     @FXML
     public Label deadline;
-    public Task<Date> Task;
+    @FXML
+    public VBox border;
+
+
 }
